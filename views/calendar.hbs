@@ -1,2 +1,34 @@
-<h1>{{title}}</h1>
-<p>Welcome to {{title}}</p>
+<header>
+	<nav>
+		<a href="">{{name}}</a>
+		<img src="" alt="image of {{name}}">
+	</nav>
+</header>
+
+<main>
+	<section class="calendar">
+		<ul class="calendar-months">
+			{{#each months}}
+				<li><a href="#{{month}}">{{this}}</a></li>
+			{{/each}}
+		</ul>
+		
+		<form action="" class="calendar-days">
+			{{#each days}}
+				<div class="calendar-days--item">
+					<!-- <span>{{@key}}</span>  bijvoorbeeld Vr -->
+					<label for="{{@key}}">{{@key}}</label>
+					<input id="{{@key}}" type="checkbox">
+					<span class="amount-{{this.indication}}">{{this.indication}}</span>
+					<ul>
+						{{# each this.avalible}}
+							<li>{{this}}</li>
+						{{/each}}			
+					</ul>
+				</div>
+			{{/each}}
+			
+			<input type="submit">
+		</form>
+	</section>
+</main>
