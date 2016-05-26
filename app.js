@@ -4,8 +4,8 @@ var favicon = require('serve-favicon');
 var logger = require('morgan');
 var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
-var MongoClient = require('mongodb').MongoClient;
-var assert = require('assert');
+// var MongoClient = require('mongodb').MongoClient;
+// var assert = require('assert');
 
 var routes = require('./routes/index');
 var users = require('./routes/users');
@@ -13,17 +13,6 @@ var desks = require('./routes/desks');
 var calendar = require('./routes/calendar');
 
 var app = express();
-
-// Use connect method to connect to the server
-var url = 'mongodb://localhost:27017/myproject';
-MongoClient.connect(url, function(err, db) {  
-  
-  assert.equal(null, err);
-  console.log("Connected succesfully to server");
-
-  db.close();
-
-});
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
