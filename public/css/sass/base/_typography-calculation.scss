@@ -1,0 +1,28 @@
+$golden: 1.61803398875;
+
+$base-font-size: 1.313rem;
+$small-font-size: $base-font-size / $golden;
+$tiny-font-size: $small-font-size / $golden;
+$med-font-size: $base-font-size;
+$large-font-size: $med-font-size * $golden;
+$xlarge-font-size: $large-font-size * $golden;
+$xxlarge-font-size: $xlarge-font-size * $golden;
+
+@mixin tiny {
+	font-size: $tiny-font-size;
+}
+@mixin small {
+	font-size: $small-font-size;
+}
+@mixin medium {
+	font-size: $med-font-size;
+}
+@mixin large {
+	font-size: $large-font-size;
+}
+@mixin xlarge {
+	font-size: $xlarge-font-size;
+}
+@mixin xxlarge {
+	font-size: $xxlarge-font-size;
+}

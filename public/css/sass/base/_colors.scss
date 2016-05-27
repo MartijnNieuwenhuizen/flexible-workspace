@@ -1,0 +1,29 @@
+// Project Colors
+$projects: (
+	wies-en-de-liefde: hsla(11, 63%, 42%, 1),
+	go: hsla(50, 99%, 50%, 1),
+	margatsni: hsla(206, 43%, 42%, 1),
+	struikrover: hsla(93, 22%, 51%, 1),
+	akzidenz: hsla(0, 0%, 21%, 1),
+	data: hsla(93, 43%, 65%, 1),
+	pinguin: hsla(0, 7%, 24%, 1),
+	github: hsla(0, 0%, 100%, 1)	
+);
+
+// Custom
+$prime-color: hsla(160, 25%, 50%, 1);
+$prime-color-lighter: lighten($prime-color, 20%);
+$secondary-color: hsla(360, 50%, 65%, 1);
+$secondary-color-lighter: lighten($secondary-color, 10%);
+$accent-color: hsla(180, 50, 50, 1);
+
+// Standard
+$white: #ffffff;
+$snowWhite: #f9f9f9;
+$black: #000000;
+$gray: #565656;
+$gray-lighten: lighten($gray, 20%);
+$darkGray: hsl(0, 0%, 20%);
+
+$font-black: #565656;
+$code-bg: rgba(0,0,0,.05);

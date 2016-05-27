@@ -1,0 +1,34 @@
+$primary-font: "Menlo", "Open Sans", "Helvetica", Sans-Serif;
+$secondary-font: "Fira Sans", "Georgia", "Times", "Times New Roman", Serif;
+$accent-font: "Garamond", Serif;
+
+body {
+	font-family: $primary-font;
+	color: $font-black;
+	line-height: 1.7;
+}
+
+h1 {
+	@include xlarge;
+}
+h2 {
+	@include large;
+	font-weight: 300;
+}
+h3 {
+	@include large;
+	font-weight: bold;
+}
+h4, p {
+	@include medium;
+}
+
+// Set margin default at 0
+h1, h2, h3, h4, p {
+	margin: 0;
+}
+
+
+
+
+
