@@ -1,23 +1,24 @@
-$primary-font: "Menlo", "Open Sans", "Helvetica", Sans-Serif;
-$secondary-font: "Fira Sans", "Georgia", "Times", "Times New Roman", Serif;
-$accent-font: "Garamond", Serif;
+$primary-font: "Lato", "Open Sans", "Helvetica", Sans-Serif;
 
 body {
 	font-family: $primary-font;
-	color: $font-black;
+	color: $font;
 	line-height: 1.7;
 }
 
 h1 {
 	@include xlarge;
+	text-transform: uppercase;
 }
 h2 {
 	@include large;
 	font-weight: 300;
+	text-transform: uppercase;
 }
 h3 {
 	@include large;
 	font-weight: bold;
+	text-transform: uppercase;
 }
 h4, p {
 	@include medium;

@@ -10,36 +10,3 @@ button {
 		oudline: none;
 	}
 }
-
-.bg-link-sec {
-	background-color: $secondary-color-lighter;
-	margin-bottom: 2em;
-	margin-left: 2em;
-	padding: .3em 1em;
-	color: $white;
-
-	&:hover {
-		background-color: $secondary-color;
-	}
-}
-
-.bg-link {
-	background-color: $prime-color-lighter;
-	margin-bottom: 2em;
-	margin-left: 2em;
-	padding: .3em 1em;
-	color: $white;
-
-	&:hover {
-		background-color: $prime-color;
-	}
-}
-.under-link {
-	color: $font-black;
-	border-bottom: 2px solid $font-black;
-
-	&:hover {
-		border-bottom: 2px solid $white;
-		color: $white;
-	}
-}

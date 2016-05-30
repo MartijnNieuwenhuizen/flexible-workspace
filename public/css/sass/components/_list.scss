@@ -1,20 +1,3 @@
-main:not(.detail) {
-	ul {
-		margin: 0 0 3em 0;
-		padding: 0 0 0 2em;
-		@include flex(column, flex-start);
-
-		li {
-			display: inline-block;
-			transition: .2s;
-			padding: 0 .5em;
-			margin: .2em 0;
-			background-color: $prime-color-lighter;
-		}
-	}
-}
-nav {
-	ul {
-		list-style-type: none;
-	}
+ul {
+	list-style-type: none;
 }

@@ -5,7 +5,8 @@ router.get('/', function(req, res, next) {
 
 	// get name current user
 	var user = {
-		name: "Martijn"
+		name: "Martijn Nieuwenhuizen",
+		url: "./img/avatar.gif"
 	}
 
 	var months = ["jan", "feb", "mar", "apr", "mei", "jun", "jul", "aug", "sep", "okt", "nov", "dec"];
@@ -172,7 +173,7 @@ router.get('/', function(req, res, next) {
 	}
 
 	// check which month is requested
-  	res.render('calendar', { name: user.name, months: months, days: days.jan });
+  	res.render('calendar', { name: user.name, url: user.url, months: months, days: days.jan });
 });
 
 module.exports = router;

@@ -1,7 +1,8 @@
 <header>
 	<nav>
+		<a href="/" class="damco">DAMCO</a>
 		<a href="">{{name}}</a>
-		<img src="" alt="image of {{name}}">
+		<img src="{{url}}" alt="image of {{name}}">
 	</nav>
 </header>
 
@@ -14,19 +15,21 @@
 		</ul>
 		
 		<form action="" class="calendar-days">
-			{{#each days}}
-				<div class="calendar-days--item">
-					<!-- <span>{{@key}}</span>  bijvoorbeeld Vr -->
-					<label for="{{@key}}">{{@key}}</label>
-					<input id="{{@key}}" type="checkbox">
-					<span class="amount-{{this.indication}}">{{this.indication}}</span>
-					<ul>
-						{{# each this.avalible}}
-							<li>{{this}}</li>
-						{{/each}}			
-					</ul>
-				</div>
-			{{/each}}
+			<ul>
+				{{#each days}}
+					<li class="calendar-days--item">
+						<!-- <span>{{@key}}</span>  bijvoorbeeld Vr -->
+						<label for="{{@key}}">{{@key}}</label>
+						<input id="{{@key}}" type="checkbox">
+						<span class="amount-{{this.indication}}">{{this.indication}}</span>
+						<!-- <ul>
+							{{#each this.avalible}}
+								<li>{{this}}</li>
+							{{/each}}			
+						</ul> -->
+					</li>
+				{{/each}}
+			</ul>
 			
 			<input type="submit">
 		</form>
