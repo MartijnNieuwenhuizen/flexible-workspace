@@ -1,0 +1,21 @@
+form.calendar-days {
+
+	ul {
+		max-width: 45em;
+
+		display: flex;
+		flex-direction: row;
+		flex-wrap: wrap;
+		justify-content: flex-start;
+		align-self: flex-end;
+	}
+
+	.days-title {
+		li {
+			display: inline-block;
+			width: 5em;
+			margin: 0 0.625em;
+			text-align: center;
+		}
+	}
+}

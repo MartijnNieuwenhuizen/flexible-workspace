@@ -1,0 +1,55 @@
+.calendar-days--item {
+	display: inline-block;
+	width: 5em;
+	margin: 1em 0.625em;
+	margin-top: auto;
+
+	display: inline-flex;
+	flex-direction: column;
+	justify-content: center;
+
+	color: $white;
+
+	label {
+		text-align: center;
+		vertical-align: middle;
+
+		border-top-left-radius: $big-radius;
+		border-top-right-radius: $big-radius;
+
+		font-size: 2.5em;
+		
+		transition: .15s;
+		height: 3rem;
+		line-height: 1.2;
+		background-color: rgba($light-blue, .5);
+	}
+	input[type="checkbox"] {
+		display: none;
+	}
+	/* if the checkbox is checked */
+	input[type=checkbox]:checked + label {
+		height: 4rem;
+		line-height: 1.6;
+		background-color: $light-blue;
+	}
+	.amount {
+		background-color: $red;
+		color: transparent;
+		margin-top: .1em;
+	}
+	.amount-10 {
+		width: 10%;
+	}
+	.amount-100 {
+		width: 100%;
+	}
+	
+	/* transparent max indocator */
+	.amount-total {
+		width: 100%;
+		background-color: rgba($red, .5);
+		color: transparent;
+		transform: translateY(-100%);
+	}
+}

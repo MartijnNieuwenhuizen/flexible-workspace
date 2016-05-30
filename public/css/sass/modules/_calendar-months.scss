@@ -1,0 +1,20 @@
+.calendar-months {
+
+	li {
+		display: inline-block;
+	}
+	a {
+		display: block;
+		width: 5em;
+		padding: .3em 0;
+		box-sizing: border-box;
+		border: 1px solid $border;
+		border-radius: $radius;
+		text-align: center;
+	}
+
+	.active {
+		background-color: $light-blue;
+		border: 1px solid $light-blue;
+	}
+}
