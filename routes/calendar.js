@@ -5,6 +5,8 @@ var template = require('./modules/template');
 
 router.get('/', function(req, res, next) {
 
+	console.log(req);
+
 	var months = ["jan", "feb", "mar", "apr", "mei", "jun", "jul", "aug", "sep", "okt", "nov", "dec"];
 	var days;
 	var user;

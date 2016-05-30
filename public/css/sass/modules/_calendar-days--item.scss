@@ -23,6 +23,10 @@
 		height: 3rem;
 		line-height: 1.2;
 		background-color: rgba($light-blue, .5);
+
+		&:hover {
+			cursor: pointer;
+		}
 	}
 	input[type="checkbox"] {
 		display: none;
@@ -51,5 +55,14 @@
 		background-color: rgba($red, .5);
 		color: transparent;
 		transform: translateY(-100%);
+	}
+	
+	/* For the dissabled day's */
+	&.disabled {
+		label {
+			&:hover {
+				cursor: not-allowed;
+			}
+		}	
 	}
 }
