@@ -10,11 +10,11 @@
 	<section class="calendar">
 		<ul class="calendar-months">
 			{{#each months}}
-				<li><a href="/calendar/#{{this}}">{{this}}</a></li>
+				<li><a href="#{{this}}">{{this}}</a></li>
 			{{/each}}
 		</ul>
 		
-		<form action="" class="calendar-days">
+		<form action="/calendar/sendCalendar" method="post" class="calendar-days">
 			<ul class="days-title">
 				<li>Ma</li>
 				<li>Di</li>
@@ -28,7 +28,7 @@
 			<ul>
 				{{#each days}}
 					<li class="calendar-days--item {{#if this.class}}{{class}}{{/if}}">
-						<input id="{{@key}}" type="checkbox" {{#if this.present}} checked {{/if}} {{#if this.class}} disabled {{/if}}>
+						<input id="{{@key}}" type="checkbox" name="{{this.fullDate}}" {{#if this.present}} checked {{/if}} {{#if this.class}} disabled {{/if}}>
 						<label for="{{@key}}">{{@key}}</label>
 						<span class="amount amount-{{this.indication}}">{{this.indication}}%</span>
 						<span class="amount-total">{{this.indication}}%</span>
