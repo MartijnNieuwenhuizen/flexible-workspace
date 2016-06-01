@@ -10,6 +10,14 @@ router.get('/', function(req, res, next) {
 	.then(function(response) {
 
 		var years = response;
+
+		// ToDo:
+			// get the years in the data object
+			// on a post, add this new year if it's exists
+			// remove the dummydata
+			// get started with the new data :)
+
+
 		dataHandler.getCurrentYears(years)
 		.then(function(response) {
 
