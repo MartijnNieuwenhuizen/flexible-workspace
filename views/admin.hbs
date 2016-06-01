@@ -1,0 +1,16 @@
+<h1>{{title}}</h1>
+<p>Welcome to {{title}}</p>
+
+<p>the current years</p>
+<ul>
+	{{#each year}}
+		<li></li>
+	{{/each}}
+</ul>
+
+<form action="/admin" type="post">
+	<label for="year"></label>
+	<input name="year" type="number">
+
+	<input type="submit" name="submit">
+</form>

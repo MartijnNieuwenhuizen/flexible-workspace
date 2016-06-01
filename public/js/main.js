@@ -6,7 +6,7 @@
 
 	app.launcher = function() {
 
-		calendar.setRightMonth();
+		// calendar.setAllDates();
 
 	}
 

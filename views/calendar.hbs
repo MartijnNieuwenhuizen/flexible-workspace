@@ -10,7 +10,11 @@
 	<section class="calendar">
 		<ul class="calendar-months">
 			{{#each months}}
-				<li><a href="#{{this}}">{{this}}</a></li>
+				{{#ifCond this ../currentMonth}}
+				    <li><a href="/2016/{{this}}" class="active">{{this}}</a></li>
+				{{else}}
+				    <li><a href="/2016/{{this}}">{{this}}</a></li>
+				{{/ifCond}}
 			{{/each}}
 		</ul>
 		

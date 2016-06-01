@@ -3,48 +3,47 @@ var router = express.Router();
 var fileHandling = require('./modules/fileHandling');
 var template = require('./modules/template');
 var dataHandler = require('./modules/dataHandler');
+var dateHandler = require('./modules/dateHandler');
 var object = require('./modules/object');
 
 var months = ["jan", "feb", "mar", "apr", "mei", "jun", "jul", "aug", "sep", "okt", "nov", "dec"];
 
 router.get('/', function(req, res, next) {
 
-	var days;
-	var user;
-	var templateData;
-
 	// Get the user
 	fileHandling.read('./routes/data/users.json')
 	.then(function(response) {
-		user = response;
+		var user = response;
 
 		// Get the calendar data
 		fileHandling.read('./routes/data/data.json')
 		.then(function(response) {
 
-			days = response;
-			var rightMonthData = days[0].jun; // set this right!
-			var userName = "martijn";
+			var days = response;
 
-			// set user to present
-			for (var key in rightMonthData) {
+			// Get current month
+			dateHandler.getCurrentMonth(months)
+			.then(function(response) {
 
-				// loop thure the avalible persons, if userName is not there, add it
-				var avaliblePersons = rightMonthData[key].avalible;
-				// console.log(avaliblePersons);
-				if ( avaliblePersons.indexOf(userName) > -1 ) {
+				// Get the data from the current month
+				var currentMonthName = response;
+				var rightMonthData = days[0][currentMonthName];
+				var userName = "martijn";
 
-					rightMonthData[key].present = true;
-					
-	  			}
-		  	}
+				console.log(currentMonthName, months[5]);
 
-		  	// console.log(rightMonthData);
+				// Ask for the users that are present on this month's day's
+				dataHandler.getPresentDays(rightMonthData, userName)
+				.then(function(response) {
 
-			templateData = { name: user[0].martijn.fullName, url: user[0].martijn.url, months: months, days: rightMonthData};
+					// Render the response data
+					var customizedData = response;
+					var templateData = { name: user[0].martijn.fullName, url: user[0].martijn.url, months: months, days: customizedData, currentMonth: currentMonthName };
+					template.render(res, 'calendar', templateData);
 
-			template.render(res, 'calendar', templateData);
+				}).catch(function(res) {console.log("Error: ", res)});
 
+			}).catch(function(res) {console.log("Error: ", res)});
 
 		}).catch(function(res) {console.log("Error: ", res)});
 
@@ -57,8 +56,10 @@ router.get('/', function(req, res, next) {
 router.post('/sendCalendar', function(req, res, err) {
 
   	var postData = req.body;
+  	var days;
+  	var userName = "martijn"; // ToDO: get this form server or client
+  	
   	// Get the month that needs to me modified
-
   	var monthToSet = object.getFirst(postData).slice(5, 7);
   	if ( monthToSet.charAt(0) == "0" ) {
   		monthToSet = monthToSet.slice(1, 2);
@@ -66,20 +67,17 @@ router.post('/sendCalendar', function(req, res, err) {
   	monthToSet = monthToSet -1;
   	var monthName = months[monthToSet];
 
-  	var days;
-
-  	var userName = "martijn"; // get this form server or client
-
+  	// Get the good user info
   	fileHandling.read('./routes/data/users.json')
 	.then(function(response) {
 		user = response;
 
+		// Get the data
 	  	fileHandling.read('./routes/data/data.json')
 		.then(function(response) {
 
-			var daysPresent = [];
-
 			days = response;
+			var daysPresent = [];
 
 			// create a array with all the dates the user is going to work
 			var rightMonthData = days[0][monthName];
@@ -122,31 +120,26 @@ router.post('/sendCalendar', function(req, res, err) {
 				}
 
 			}
+			// rewrite the modified data to the dataset
 			days[0][monthName] = rightMonthData;
 
+			// write the new dataset
 			fileHandling.write('./routes/data/data.json', days)
 			.then(function(response) {
 
-				var days = response;
+				var days = response; // the new dataset
 				var rightMonthData = days[0].jun; // set this right!
 				var userName = "martijn";
 
-				// set user to present
-				for (var key in rightMonthData) {
+				dataHandler.getPresentDays(rightMonthData, userName)
+				.then(function(response) {
 
-					// loop thure the avalible persons, if userName is not there, add it
-					var avaliblePersons = rightMonthData[key].avalible;
-					// console.log(avaliblePersons);
-					if ( avaliblePersons.indexOf(userName) > -1 ) {
+					var customizedData = response;
+					var templateData = { name: user[0].martijn.fullName, url: user[0].martijn.url, months: months, days: customizedData};
+					
+					template.render(res, 'calendar', templateData);
 
-						rightMonthData[key].present = true;
-
-		  			}
-			  	}
-
-				templateData = { name: user[0].martijn.fullName, url: user[0].martijn.url, months: months, days: rightMonthData};
-
-				template.render(res, 'calendar', templateData);
+				}).catch(function(res) {console.log("Error: ", res)});
 
 			}).catch(function(res) {console.log("Error: ", res)});
 

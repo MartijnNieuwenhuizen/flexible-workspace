@@ -7,7 +7,6 @@ dataHandler.get = function(name, date) {
 	.then(function(response) {
 		user = response;
 
-		// Get the calendar data
 		fileHandling.read('./routes/data/data.json')
 		.then(function(response) {
 
@@ -24,4 +23,49 @@ dataHandler.get = function(name, date) {
 
 }	
 
+dataHandler.getPresentDays = function(data, userName) {
+
+	return new Promise(function(resolve, reject) { // Resolve = .then / Reject = .catch;
+
+		var _data = data;
+		var _userName = userName;
+
+		// set user to present
+		for (var key in _data) {
+
+			// loop thure the avalible persons, if userName is not there, add it
+			var avaliblePersons = _data[key].avalible;
+			if ( avaliblePersons.indexOf(_userName) > -1 ) {
+
+				_data[key].present = true;
+				
+			}
+		}
+		resolve(_data);
+
+	});
+
+}
+
+dataHandler.getCurrentYears = function(_data) {
+
+	return new Promise(function(resolve, reject) {
+
+		for (var key in _data) {
+
+			console.log(key);
+			
+		}
+		// resolve(_data);
+
+	});
+
+}
+
 module.exports = dataHandler;
+
+
+
+
+
+
