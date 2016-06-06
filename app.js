@@ -9,7 +9,7 @@ var Handlebars = require('hbs');
 // var assert = require('assert');
 
 var routes = require('./routes/index');
-var users = require('./routes/users');
+var user = require('./routes/user');
 var desks = require('./routes/desks');
 var calendar = require('./routes/calendar');
 var admin = require('./routes/admin');
@@ -39,7 +39,7 @@ app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
 app.use('/', explanation);
-app.use('/users', users);
+app.use('/user', user);
 app.use('/desks', desks);
 app.use('/calendar', calendar);
 app.use('/admin', admin);
