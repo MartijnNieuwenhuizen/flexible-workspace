@@ -28,7 +28,7 @@ router.post('/login', function(req, res, next) {
 		} else {
 			
 			// render sign up page
-			res.redirect('sign-up');
+			res.redirect('sign-up/' + inputName);
 
 		}
 
@@ -39,15 +39,52 @@ router.post('/login', function(req, res, next) {
 
 
 
-router.get('/sign-up', function(req, res, next) {
-  
-	res.render('sign-up');
+router.get('/sign-up/:name', function(req, res, next) {
+  		
+  	var name = "username";
+  	var name = req.params.name;
+	res.render('sign-up', {name: name});
 
 });
 
-router.post('/sign-up', function(req, res, next) {
+router.post('/sign-up/:name', function(req, res, next) {
   
-	var data = req.body;
+	var username = req.body.username;
+	var desk = req.body.desk;
+
+	fileHandling.read('./routes/data/users.json')
+	.then(function(response) {
+		
+		var users = response;
+		
+		// if the users exists in the DB
+		if ( users[0][username] ) {
+			
+			// User already exists!!!!!!
+			// Log the user in!
+
+		} else {
+			
+			// add the new user
+			users[0][username] = {
+				fullName: username,
+				desk: desk,
+				url: '/img/avatar.gif'
+			};
+			
+			// write the new userdata
+			fileHandling.write('./routes/data/users.json', users)
+			.then(function(response) {
+
+				var newUserData = response;
+
+			}).catch(function(res) {console.log("Error: ", res)});
+
+		}
+
+
+	}).catch(function(res) {console.log("Error: ", res)});
+
 
 });
 
