@@ -16,32 +16,29 @@ router.get('/', function(req, res, next) {
 		var user = response;
 
 		// Get the calendar data
-		fileHandling.read('./routes/data/data.json')
+		fileHandling.read('./routes/data/dataTest.json')
 		.then(function(response) {
 
-			var days = response;
+			// get the calendarData
+			var fullData = response;
 
-			// Get current month
-			dateHandler.getCurrentMonth(months)
+			// Create the date of today
+			var today = new Date();
+			var thisMonth = today.getMonth();
+			var currentMonthName = months[thisMonth];
+			var thisYear = today.getFullYear();
+			// Get the data from the current month
+			var rightMonthData = fullData[0][thisYear][thisMonth];
+			var userName = "martijn";
+
+			// Ask for the users that are present on this month's day's
+			dataHandler.getPresentDays(rightMonthData, userName)
 			.then(function(response) {
 
-				// Get the data from the current month
-				var currentMonthName = response;
-				var rightMonthData = days[0][currentMonthName];
-				var userName = "martijn";
-
-				console.log(currentMonthName, months[5]);
-
-				// Ask for the users that are present on this month's day's
-				dataHandler.getPresentDays(rightMonthData, userName)
-				.then(function(response) {
-
-					// Render the response data
-					var customizedData = response;
-					var templateData = { name: user[0].martijn.fullName, url: user[0].martijn.url, months: months, days: customizedData, currentMonth: currentMonthName };
-					template.render(res, 'calendar', templateData);
-
-				}).catch(function(res) {console.log("Error: ", res)});
+				// Render the response data
+				var customizedData = response;
+				var templateData = { name: user[0].martijn.fullName, url: user[0].martijn.url, months: months, days: customizedData, currentMonth: currentMonthName };
+				template.render(res, 'calendar', templateData);
 
 			}).catch(function(res) {console.log("Error: ", res)});
 

@@ -3,14 +3,17 @@
 
 <p>the current years</p>
 <ul>
-	{{#each year}}
-		<li></li>
+	{{#each years}}
+		<li>{{this}}</li>
 	{{/each}}
 </ul>
+{{#if message}}
+	<p>{{message}}</p>
+{{/if}}
 
-<form action="/admin" type="post">
+<form action="/admin" method="post">
 	<label for="year"></label>
-	<input name="year" type="number">
+	<input name="year" type="number" required>
 
 	<input type="submit" name="submit">
 </form>

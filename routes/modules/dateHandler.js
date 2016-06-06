@@ -1,14 +1,15 @@
 var dateHandler = {};
 
-dateHandler.getCurrentMonth = function(months) {
+dateHandler.getCurrentMonth = function(years) {
 
 	return new Promise(function(resolve, reject) {
 
-		var _months = months;
+		var _years = years;
 
 		var today = new Date();
 		var thisMonth = today.getMonth();
-		var currentMonthName = _months[thisMonth];
+		var thisYear = today.getFullYear();
+		var currentMonthName = _years[thisYear][thisMonth];
 
 		resolve(currentMonthName);
 

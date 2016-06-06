@@ -51,21 +51,18 @@ dataHandler.getCurrentYears = function(_data) {
 
 	return new Promise(function(resolve, reject) {
 
-		for (var key in _data) {
+		var years = [];
 
-			console.log(key);
-			
+		for (var key in _data[0]) {
+
+			years.push(key);
+
 		}
-		// resolve(_data);
+
+		resolve(years);
 
 	});
 
 }
 
 module.exports = dataHandler;
-
-
-
-
-
-
