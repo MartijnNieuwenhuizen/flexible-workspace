@@ -13,6 +13,7 @@ var users = require('./routes/users');
 var desks = require('./routes/desks');
 var calendar = require('./routes/calendar');
 var admin = require('./routes/admin');
+var explanation = require('./routes/explanation');
 
 var thisYear = require('./routes/thisYear');
 
@@ -37,7 +38,7 @@ app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
-app.use('/', routes);
+app.use('/', explanation);
 app.use('/users', users);
 app.use('/desks', desks);
 app.use('/calendar', calendar);

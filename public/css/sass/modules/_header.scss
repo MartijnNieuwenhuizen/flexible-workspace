@@ -28,8 +28,38 @@ body > header {
 		border-radius: 50%;
 		overflow: hidden;
 	}
-	.damco {
+	.dropdown {
 		margin-right: auto;
-		font-size: 150%;
-	}
+		display: flex;
+
+		svg {
+			height: 1.3em;
+    		width: 2em;
+		}
+
+		rect {
+			height: .3em;
+			fill: $font;
+			stroke-width: 0;
+
+			transition: .3s;
+			width: 2em;
+
+			&:nth-of-type(2) {
+				y: .5em;	
+			}
+			&:nth-of-type(3) {
+				y: 1em;
+			}
+		}
+
+		&:hover {
+			rect:nth-of-type(1) {
+				width: 50%;	
+			}
+			rect:nth-of-type(2) {
+				width: 75%;	
+			}
+		}
+	} 
 }
