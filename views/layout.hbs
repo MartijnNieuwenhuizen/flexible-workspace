@@ -13,15 +13,23 @@
   <body>
   <header>
     <nav>
-      <a href="" class="dropdown">
+      <a href="/">Explenation</a>
+      <a href="/calendar" class="dropdown">Calendar</a>
+      <!-- <a href="" class="dropdown">
         <svg>
           <rect/>
           <rect/>
           <rect/>
         </svg>
-      </a>
-      <a href="">{{name}}</a>
-      <img src="{{url}}" alt="image of {{name}}">
+      </a> -->
+      {{#if name}}
+        <a href="">{{name}}</a>
+      {{else}}
+        <a href="/user/login">Login/Sign-up</a>
+      {{/if}}
+      {{#if url}}
+        <img src="{{url}}" alt="image of {{name}}">
+      {{/if}}
     </nav>
   </header>
     {{{body}}}
