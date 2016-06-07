@@ -10,7 +10,7 @@ router.get('/login', function(req, res, next) {
 });
 
 router.post('/login', function(req, res, next) {
-  	
+
   	// the name filled in by the user
 	var inputName = req.body.username;
 
@@ -52,7 +52,9 @@ router.get('/sign-up/:name', function(req, res, next) {
 
 });
 
-router.post('/sign-up/:name', function(req, res, next) {
+router.post('/sign-up', function(req, res, next) {
+
+	console.log(req.body);
   
 	var username = req.body.username;
 	var desk = req.body.desk;
@@ -80,13 +82,14 @@ router.post('/sign-up/:name', function(req, res, next) {
 
 			var sess = req.session;
 			sess.views = 1;
-			sess.userId = users[0][inputName].id;
+			sess.userId = users[0][username].id;
 			
 			// write the new userdata
 			fileHandling.write('./routes/data/users.json', users)
 			.then(function(response) {
 
 				var newUserData = response;
+				res.redirect('/calendar');
 
 			}).catch(function(res) {console.log("Error: ", res)});
 
