@@ -5,8 +5,10 @@ var logger = require('morgan');
 var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
 var Handlebars = require('hbs');
+var session = require('express-session')
 // var MongoClient = require('mongodb').MongoClient;
 // var assert = require('assert');
+var forever = require('forever-monitor');
 
 var routes = require('./routes/index');
 var user = require('./routes/user');
@@ -23,12 +25,36 @@ var app = express();
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'hbs');
 
+// create the custom ifCond comparator
+// Thx Peter Bratton for this helper
+// Source: http://stackoverflow.com/questions/8853396/logical-operator-in-a-handlebars-js-if-conditional
 Handlebars.registerHelper('ifCond', function(v1, v2, options) {
   if(v1 === v2) {
     return options.fn(this);
   }
   return options.inverse(this);
 });
+
+// Middleware - Sessions
+app.set('trust proxy', 1);
+app.use(session({
+  resave: true,
+  saveUninitialized: true,
+  secret: 'E=MC2'
+}))
+
+// Forever instead of nodemon
+var child = new (forever.Monitor)('app.js', {
+  max: 3,
+  silent: true,
+  args: []
+});
+
+child.on('exit', function () {
+  console.log('app.js has exited after 3 restarts');
+});
+
+child.start();
 
 // uncomment after placing your favicon in /public
 //app.use(favicon(path.join(__dirname, 'public', 'favicon.ico')));

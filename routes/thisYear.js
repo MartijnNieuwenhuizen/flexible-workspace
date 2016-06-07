@@ -9,37 +9,57 @@ var months = ["jan", "feb", "mar", "apr", "mei", "jun", "jul", "aug", "sep", "ok
 
 router.get('/:month', function(req, res, next) {
 
-	var monthName = req.params.month;
-	var monthNumber = months.indexOf(monthName) + 1;
-	console.log(monthNumber);
-	var thisYear = new Date().getFullYear();
+	if (req.session && req.session.userId) {
 
-	fileHandling.read('./routes/data/users.json')
-	.then(function(response) {
-		user = response;
+		var userId = req.session.userId;
+		var monthName = req.params.month;
+		var monthNumber = months.indexOf(monthName) + 1;
+		console.log(monthNumber);
 
-		fileHandling.read('./routes/data/dataTest.json')
+		// Get the user
+		fileHandling.read('./routes/data/users.json')
 		.then(function(response) {
+			var user = response;
 
-			// get the calendarData
-			var fullData = response;
-			var rightMonthData = fullData[0][thisYear][4];
-			var userName = "martijn";
+			for (var key in user[0]) {
 
-			dataHandler.getPresentDays(rightMonthData, userName)
+				if ( user[0][key].id == userId ) {
+
+					var userName = user[0][key].fullName;
+					var userImg = user[0][key].url;
+
+				}
+
+			}
+
+			var monthNumber = months.indexOf(monthName) + 1;
+			var thisYear = new Date().getFullYear();
+
+			fileHandling.read('./routes/data/dataTest.json')
 			.then(function(response) {
 
-				var customizedData = response;
-				var templateData = { name: user[0].martijn.fullName, url: user[0].martijn.url, months: months, days: customizedData, currentMonth: monthName };
-				
-				template.render(res, 'calendar', templateData);
+				// get the calendarData
+				var fullData = response;
+				var rightMonthData = fullData[0][thisYear][monthNumber];
+
+				dataHandler.getPresentDays(rightMonthData, userName)
+				.then(function(response) {
+
+					var customizedData = response;
+					var templateData = { name: userName, url: userImg, months: months, days: customizedData, currentMonth: monthName };
+					
+					template.render(res, 'calendar', templateData);
+
+
+				}).catch(function(res) {console.log("Error: ", res)});
 
 			}).catch(function(res) {console.log("Error: ", res)});
 
 		}).catch(function(res) {console.log("Error: ", res)});
 
-	}).catch(function(res) {console.log("Error: ", res)});
-
+	} else {
+		res.redirect('/user/login');
+	}
 });
 
 	

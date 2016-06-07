@@ -1,6 +1,7 @@
 var express = require('express');
 var router = express.Router();
 var fileHandling = require('./modules/fileHandling');
+var sessionHandling = require('./modules/sessionHandling');
 
 router.get('/login', function(req, res, next) {
   
@@ -22,7 +23,12 @@ router.post('/login', function(req, res, next) {
 		// if the users exists in the DB
 		if ( users[0][inputName] ) {
 			
-			// create Session???
+			// create Session
+			var sess = req.session;
+			sess.views = 1;
+			sess.userId = users[0][inputName].id;
+			
+			// rederect the user to the calendar
 			res.redirect('/calendar');
 
 		} else {
@@ -31,7 +37,6 @@ router.post('/login', function(req, res, next) {
 			res.redirect('sign-up/' + inputName);
 
 		}
-
 
 	}).catch(function(res) {console.log("Error: ", res)});
 
@@ -69,8 +74,13 @@ router.post('/sign-up/:name', function(req, res, next) {
 			users[0][username] = {
 				fullName: username,
 				desk: desk,
-				url: '/img/avatar.gif'
+				url: '/img/avatar.gif',
+				id: Object.keys(users[0]).length + 1
 			};
+
+			var sess = req.session;
+			sess.views = 1;
+			sess.userId = users[0][inputName].id;
 			
 			// write the new userdata
 			fileHandling.write('./routes/data/users.json', users)
@@ -91,6 +101,32 @@ router.post('/sign-up/:name', function(req, res, next) {
 
 
 router.get('/:name', function(req, res, next) {
+
+	// count a new session view, or set the sesssion view
+	var sess = req.session;
+  	if (sess.views) {
+	    sess.views++;
+	    res.end();
+  	} else {
+	    sess.views = 1;
+	    res.end();
+  	}
+
+  	// console.log(sessionId, sessionCookie, sess.views);
+
+  	// req.session.regenerate(function(err) {
+  	  	
+  	//   	// will have a new session here
+
+  	// })
+  	// req.session.reload(function(err) {
+  	 	
+  	//  	// session updated
+
+  	// })
+
+
+
   
 	var userName = req.params.name;
 	res.send("User: " + userName);
