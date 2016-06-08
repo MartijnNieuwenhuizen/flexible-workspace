@@ -14,7 +14,6 @@ router.get('/:month', function(req, res, next) {
 		var userId = req.session.userId;
 		var monthName = req.params.month;
 		var monthNumber = months.indexOf(monthName) + 1;
-		console.log(monthNumber);
 
 		// Get the user
 		fileHandling.read('./routes/data/users.json')

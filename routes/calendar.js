@@ -5,6 +5,7 @@ var template = require('./modules/template');
 var dataHandler = require('./modules/dataHandler');
 var dateHandler = require('./modules/dateHandler');
 var object = require('./modules/object');
+var calculation = require('./modules/calculation');
 
 var months = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];
 
@@ -70,9 +71,6 @@ router.get('/', function(req, res, next) {
 // Handle the post
 router.post('/', function(req, res, err) {
 
-	console.log(req.session);
-	console.log(req.session.userId);
-
 	if (req.session && req.session.userId) {
 
 		var userId = req.session.userId;
@@ -83,6 +81,9 @@ router.post('/', function(req, res, err) {
 		fileHandling.read('./routes/data/users.json')
 		.then(function(response) {
 			user = response;
+
+			// get the total amount of desks (for prototype purposes it's the amount of users * 1,5)
+			var amountOfUsers = Math.round(Object.keys(user[0]).length * 1.5);
 
 			for (var key in user[0]) {
 
@@ -131,14 +132,17 @@ router.post('/', function(req, res, err) {
 				// loop thrue the whole months
 				for (var key in rightMonthData) {
 
+					var avaliblePersons = rightMonthData[key].avalible;
+
 					// if the user is working on this day && that's not yet in the data --> add the user
 					if ( daysPresent.indexOf(key) > -1 ) {
 
 						// loop thure the avalible persons, if userName is not there, add it
-						var avaliblePersons = rightMonthData[key].avalible;
 						if ( avaliblePersons.indexOf(userName) == -1 ) {
 
-			  				avaliblePersons.push(userName)
+			  				avaliblePersons.push(userName);
+			  				
+			  				rightMonthData[key].indication = calculation.newIndication(avaliblePersons.length, amountOfUsers);
 
 			  			}
 
@@ -146,11 +150,12 @@ router.post('/', function(req, res, err) {
 					} else {
 						
 						// loop thure the avalible persons, if userName is there, remove it
-						var avaliblePersons = rightMonthData[key].avalible;
 						if ( avaliblePersons.indexOf(userName) > -1 ) {
 
 							var indexNumber = avaliblePersons.indexOf(userName);
 			  				avaliblePersons.splice(indexNumber);
+
+			  				rightMonthData[key].indication = calculation.newIndication(avaliblePersons.length, amountOfUsers);
 
 			  			}
 
