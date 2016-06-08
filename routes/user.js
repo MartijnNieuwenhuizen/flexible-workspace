@@ -12,7 +12,7 @@ router.get('/login', function(req, res, next) {
 router.post('/login', function(req, res, next) {
 
   	// the name filled in by the user
-	var inputName = req.body.username;
+	var inputName = req.body.username.toLowerCase();
 
 	// get the users DB
 	fileHandling.read('./routes/data/users.json')
@@ -53,10 +53,8 @@ router.get('/sign-up/:name', function(req, res, next) {
 });
 
 router.post('/sign-up', function(req, res, next) {
-
-	console.log(req.body);
   
-	var username = req.body.username;
+	var username = req.body.username.toLowerCase();
 	var desk = req.body.desk;
 
 	fileHandling.read('./routes/data/users.json')
@@ -105,32 +103,6 @@ router.post('/sign-up', function(req, res, next) {
 
 router.get('/:name', function(req, res, next) {
 
-	// count a new session view, or set the sesssion view
-	var sess = req.session;
-  	if (sess.views) {
-	    sess.views++;
-	    res.end();
-  	} else {
-	    sess.views = 1;
-	    res.end();
-  	}
-
-  	// console.log(sessionId, sessionCookie, sess.views);
-
-  	// req.session.regenerate(function(err) {
-  	  	
-  	//   	// will have a new session here
-
-  	// })
-  	// req.session.reload(function(err) {
-  	 	
-  	//  	// session updated
-
-  	// })
-
-
-
-  
 	var userName = req.params.name;
 	res.send("User: " + userName);
 
