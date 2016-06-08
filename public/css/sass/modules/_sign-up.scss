@@ -1,0 +1,69 @@
+$deskSize: 5.7em;
+
+.sign-up {
+	max-width: 18em;
+	
+	div span {
+		position: absolute;
+		transform: translate(11.5em ,-195%);
+	}
+
+	input[type="checkbox"] {
+		display: inline-block;
+		width: 10%;
+		/*vertical-align: middle;*/
+		/*margin-top: .5em;*/
+	}
+	input[type="checkbox"]:checked + label {
+		font-weight: bold;
+		margin-top: -5em;
+	}
+	label[for="email"] {
+		display: inline-block;
+		text-transform: capitalize;
+		width: 80%;
+		color: $font;
+		margin-top: -5em;
+	}
+
+	p {
+		margin: 1em 0 .3em 0;
+		text-transform: uppercase;
+		color: $light-blue;
+	}
+	input[type="radio"] {
+		display: none;
+	}
+	label[for="fixedDesk"],
+	label[for="flexDesk"] {
+		height: $deskSize;
+		width: $deskSize;
+		display: inline-block;
+	    text-align: center;
+	    border-radius: $big-radius;
+	    margin-bottom: 3em;
+	    margin-left: 1em;
+	}
+	label[for="fixedDesk"]::before,
+	label[for="flexDesk"]::before {
+		content: " ";
+		height: 5em;
+		width: 5em;
+		display: inline-block;
+	    background-position: center bottom;
+	    background-repeat: no-repeat;
+	    background-size: 5em;
+	}
+	label[for="flexDesk"]::before {
+		background-image: url('../img/flex.svg');
+	}
+	label[for="fixedDesk"]::before {
+		background-image: url('../img/fixed.svg');	
+	}
+	
+	input[type="radio"]:checked + label {
+		font-weight: bold;
+		background-color: $light-blue;
+	}
+	
+}

@@ -1,0 +1,32 @@
+form {
+	margin: 0 auto;
+
+	legend {
+		font-size: 2em;
+		text-transform: uppercase;
+		padding: .7em 0;
+		color: $blue;
+	}
+	label {
+		text-transform: uppercase;
+		color: $light-blue;
+	}
+	label,
+	input {
+		font-size: 1.2em;
+	}
+	input {
+		padding: .3em;	
+		width: 100%;
+		box-sizing: border-box;
+		border: 2px solid $border;
+		border-radius: $radius;
+		margin-bottom: 1em;
+	}
+	input[type="submit"] {
+		border-color: $green;
+		background-color: $green;
+		color: $white;
+		text-transform: uppercase;
+	}
+}

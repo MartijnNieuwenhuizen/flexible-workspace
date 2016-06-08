@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<svg width="80px" height="80px" viewBox="0 0 80 80" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 3.8.3 (29802) - http://www.bohemiancoding.com/sketch -->
+    <title>flex</title>
+    <desc>Created with Sketch.</desc>
+    <defs></defs>
+    <g id="Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="flex">
+            <g id="Flex-Copy-2" transform="translate(12.000000, 6.000000)">
+                <g id="table" transform="translate(0.000000, 33.813187)" fill="#D8D8D8">
+                    <path d="M0,1.4010989 C0,0.627293345 0.62890625,0 1.39824878,0 L54.6017512,0 C55.3739827,0 56,0.621898515 56,1.4010989 L56,1.4010989 C56,2.17490446 55.3710938,2.8021978 54.6017512,2.8021978 L1.39824878,2.8021978 C0.626017302,2.8021978 0,2.18029929 0,1.4010989 L0,1.4010989 Z" id="Rectangle-94-Copy-6"></path>
+                    <rect id="Rectangle-94-Copy-7" transform="translate(3.266667, 18.027473) rotate(-270.000000) translate(-3.266667, -18.027473) " x="-12.88" y="16.6263736" width="32.2933333" height="2.8021978" rx="1.4010989"></rect>
+                    <rect id="Rectangle-94-Copy-8" transform="translate(52.733333, 18.027473) rotate(-270.000000) translate(-52.733333, -18.027473) " x="36.5866667" y="16.6263736" width="32.2933333" height="2.8021978" rx="1.4010989"></rect>
+                </g>
+                <g id="human" transform="translate(17.546667, 0.000000)" fill="#D8D8D8">
+                    <rect id="Rectangle-100-Copy-4" x="2.24" y="38.1098901" width="4.10666667" height="29.8901099" rx="2.05333333"></rect>
+                    <rect id="Rectangle-100-Copy-5" x="11.9466667" y="38.1098901" width="4.10666667" height="29.8901099" rx="2.05333333"></rect>
+                    <ellipse id="Oval-3-Copy" cx="10.64" cy="7.0989011" rx="7.09333333" ry="7.0989011"></ellipse>
+                    <path d="M0,23.2582418 C0,17.4289066 4.7206228,12.7032967 10.5466667,12.7032967 L10.5466667,12.7032967 C16.3714298,12.7032967 21.0933333,17.4276249 21.0933333,23.2582418 L21.0933333,33.8131868 L0,33.8131868 L0,23.2582418 Z" id="Rectangle-103-Copy"></path>
+                </g>
+                <g id="laptop" transform="translate(15.866667, 22.604396)" fill="#004B6F">
+                    <rect id="Rectangle-104-Copy-4" x="1.68" y="0" width="21.0933333" height="10.6410732" rx="1"></rect>
+                    <rect id="Rectangle-104-Copy-5" x="0" y="10.4615385" width="24.36" height="0.747252747" rx="0.373626374"></rect>
+                </g>
+            </g>
+        </g>
+    </g>
+</svg>

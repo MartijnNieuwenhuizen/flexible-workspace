@@ -1,6 +1,8 @@
-.input-username {
-
-	&:before {
-		content: "@damco.com";
+.login {
+	max-width: 18em;
+	
+	div span {
+		position: absolute;
+		transform: translate(11.5em ,-195%);
 	}
 }
