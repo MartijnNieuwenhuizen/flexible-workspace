@@ -5,7 +5,7 @@ var template = require('./modules/template');
 var dataHandler = require('./modules/dataHandler');
 var object = require('./modules/object');
 
-var months = ["jan", "feb", "mar", "apr", "mei", "jun", "jul", "aug", "sep", "okt", "nov", "dec"];
+var months = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];
 
 router.get('/:month', function(req, res, next) {
 

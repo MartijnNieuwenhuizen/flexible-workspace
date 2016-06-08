@@ -14,7 +14,7 @@ form.calendar-days {
 		@media(min-width: $calendar-bp-one) {
 			max-width: 32em;
 		}
-		@media(min-width: $calendar-bp-one) {
+		@media(min-width: $calendar-bp-two) {
 			max-width: 45em;
 		}
 	}
@@ -22,15 +22,18 @@ form.calendar-days {
 	.days-title {
 		li {
 			display: inline-block;
-			width: 5em;
 			margin: 0 0.625em;
 			text-align: center;
+			width: 2.6em;
+			@media(min-width: $calendar-bp-one) {
+				width: 5em;
+			}
 
 			&:nth-of-type(6),
 			&:nth-of-type(7) {
 				display: none;
 			}
-			@media(min-width: $calendar-bp-one) {
+			@media(min-width: $calendar-bp-two) {
 				&:nth-of-type(6),
 				&:nth-of-type(7) {
 					display: inline-block;

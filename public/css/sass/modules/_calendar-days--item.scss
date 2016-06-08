@@ -25,7 +25,7 @@
     &:nth-of-type(7n+7) {
     	display: none;
     }
-    @media(min-width: $calendar-bp-one) {
+    @media(min-width: $calendar-bp-two) {
     	&:nth-of-type(7n+6),
     	&:nth-of-type(7n+7) {
     		display: inline-flex;
