@@ -45,10 +45,16 @@ router.get('/:month', function(req, res, next) {
 				.then(function(response) {
 
 					var customizedData = response;
-					var templateData = { name: userName, url: userImg, months: months, days: customizedData, currentMonth: monthName };
-					
-					template.render(res, 'calendar', templateData);
 
+					dataHandler.addColorCode(customizedData)
+					.then(function(response) {
+
+						var dataWithColor = response;
+
+						var templateData = { name: userName, url: userImg, months: months, days: dataWithColor, currentMonth: monthName };
+						res.render('calendar', templateData);
+
+					}).catch(function(res) {console.log("Error: ", res)});
 
 				}).catch(function(res) {console.log("Error: ", res)});
 

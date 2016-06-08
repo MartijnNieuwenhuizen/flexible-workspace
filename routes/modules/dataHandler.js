@@ -65,4 +65,31 @@ dataHandler.getCurrentYears = function(_data) {
 
 }
 
+dataHandler.addColorCode = function(data) {
+
+	return new Promise(function(resolve, reject) {
+
+		var _data = data;
+
+		// add the color to the indication value
+		for (var key in _data) {
+
+			if ( _data[key].indication < 25 ) {
+				_data[key].color = "#96C550";
+			} else if ( _data[key].indication < 50 ) {
+				_data[key].color = "#00AD35";
+			} else if ( _data[key].indication < 75 ) {
+				_data[key].color = "#F25336";
+			} else {
+				_data[key].color = "#C90702";
+			}
+
+		}
+
+		resolve(_data);
+
+	});
+
+}
+
 module.exports = dataHandler;

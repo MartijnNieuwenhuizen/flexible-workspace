@@ -52,8 +52,16 @@ router.get('/', function(req, res, next) {
 
 					// Render the response data
 					var customizedData = response;
-					var templateData = { name: userName, url: userImg, months: months, days: customizedData, currentMonth: currentMonthName };
-					res.render('calendar', templateData);
+
+					dataHandler.addColorCode(customizedData)
+					.then(function(response) {
+
+						var dataWithColor = response;
+
+						var templateData = { name: userName, url: userImg, months: months, days: dataWithColor, currentMonth: currentMonthName };
+						res.render('calendar', templateData);
+
+					}).catch(function(res) {console.log("Error: ", res)});
 
 				}).catch(function(res) {console.log("Error: ", res)});
 
@@ -178,14 +186,20 @@ router.post('/', function(req, res, err) {
 					.then(function(response) {
 
 						var customizedData = response;
-						var templateData = { name: userName, url: userImg, months: months, days: customizedData, currentMonth: currentMonthName };
-						
-						res.render('calendar', templateData);
+
+						dataHandler.addColorCode(customizedData)
+						.then(function(response) {
+
+							var dataWithColor = response;
+
+							var templateData = { name: userName, url: userImg, months: months, days: dataWithColor, currentMonth: currentMonthName };
+							res.render('calendar', templateData);
+
+						}).catch(function(res) {console.log("Error: ", res)});
 
 					}).catch(function(res) {console.log("Error: ", res)});
 
 				}).catch(function(res) {console.log("Error: ", res)});
-
 
 			}).catch(function(res) {console.log("Error: ", res)});
 
