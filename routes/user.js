@@ -56,6 +56,7 @@ router.post('/sign-up', function(req, res, next) {
   
 	var username = req.body.username.toLowerCase();
 	var desk = req.body.desk;
+	var email = req.body.email;
 
 	fileHandling.read('./routes/data/users.json')
 	.then(function(response) {
@@ -75,21 +76,28 @@ router.post('/sign-up', function(req, res, next) {
 				fullName: username,
 				desk: desk,
 				url: '/img/avatar.gif',
-				id: Object.keys(users[0]).length + 1
+				id: Object.keys(users[0]).length + 1,
+				email: false
 			};
+
+			if ( email == "on" ) {
+				users[0][username].email = true
+			}
+
+			console.log(users[0][username]);
 
 			var sess = req.session;
 			sess.views = 1;
 			sess.userId = users[0][username].id;
 			
 			// write the new userdata
-			fileHandling.write('./routes/data/users.json', users)
-			.then(function(response) {
+			// fileHandling.write('./routes/data/users.json', users)
+			// .then(function(response) {
 
-				var newUserData = response;
-				res.redirect('/calendar');
+			// 	var newUserData = response;
+			// 	res.redirect('/calendar');
 
-			}).catch(function(res) {console.log("Error: ", res)});
+			// }).catch(function(res) {console.log("Error: ", res)});
 
 		}
 
