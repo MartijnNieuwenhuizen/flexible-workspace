@@ -1,14 +1,41 @@
 .calendar-days--item {
 	display: inline-block;
-	width: 5em;
-	margin: 1em 0.625em;
+	width: 3em;
+    margin: 1em 0.425em;
 	margin-top: auto;
 
 	display: inline-flex;
 	flex-direction: column;
 	justify-content: center;
 
+	align-self: flex-end;
+
 	color: $white;
+	
+    @media(min-width: $calendar-bp-one) {
+    	width: 5em;
+    	margin: 1em 0.625em;
+    }
+	
+	/* 
+		Hide the weekends 	
+		7n means every 7th element afther the selected element (+6 of +7)
+	*/
+    &:nth-of-type(7n+6),
+    &:nth-of-type(7n+7) {
+    	display: none;
+    }
+    @media(min-width: $calendar-bp-one) {
+    	&:nth-of-type(7n+6),
+    	&:nth-of-type(7n+7) {
+    		display: inline-flex;
+
+    		label,
+    		input[type=checkbox]:checked + label {
+    			background-color: $border;
+    		}
+    	}
+    }
 
 	label {
 		text-align: center;
@@ -17,12 +44,17 @@
 		border-top-left-radius: $big-radius;
 		border-top-right-radius: $big-radius;
 
-		font-size: 2.5em;
+		font-size: 2em;
 		
 		transition: .15s;
 		height: 3rem;
-		line-height: 1.2;
+		line-height: 1.5;
 		background-color: rgba($light-blue, .5);
+
+		@media(min-width: $calendar-bp-one) {
+			font-size: 2.5em;	
+			line-height: 1.2;
+		}
 
 		&:hover {
 			cursor: pointer;

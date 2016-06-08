@@ -21,7 +21,7 @@
 				<li>Zo</li>
 			</ul>
 
-			<ul>
+			<ul class="calendar-container">
 				{{#each days}}
 					<li class="calendar-days--item {{#if this.class}}{{class}}{{/if}}">
 						<input id="{{@key}}" type="checkbox" name="{{this.fullDate}}" {{#if this.present}} checked {{/if}} {{#if this.class}} disabled {{/if}}>
