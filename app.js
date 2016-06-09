@@ -8,7 +8,6 @@ var Handlebars = require('hbs');
 var session = require('express-session')
 // var MongoClient = require('mongodb').MongoClient;
 // var assert = require('assert');
-var forever = require('forever-monitor');
 
 var routes = require('./routes/index');
 var user = require('./routes/user');
@@ -42,19 +41,6 @@ app.use(session({
   saveUninitialized: true,
   secret: 'E=MC2'
 }))
-
-// Forever instead of nodemon
-var child = new (forever.Monitor)('app.js', {
-  max: 3,
-  silent: true,
-  args: []
-});
-
-child.on('exit', function () {
-  console.log('app.js has exited after 3 restarts');
-});
-
-child.start();
 
 // uncomment after placing your favicon in /public
 //app.use(favicon(path.join(__dirname, 'public', 'favicon.ico')));
