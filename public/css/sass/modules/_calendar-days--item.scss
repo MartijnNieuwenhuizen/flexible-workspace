@@ -86,9 +86,21 @@
 	/* For the dissabled day's */
 	&.disabled {
 		label {
+			background-color: $border;
+			font-size: 120%;
+			line-height: 2.4;
+
 			&:hover {
 				cursor: not-allowed;
 			}
 		}	
+		input {
+			&:hover {
+				cursor: not-allowed;
+			}
+		}
+		.amount-total {
+			background-color: $border;
+		}
 	}
 }

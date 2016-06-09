@@ -45,13 +45,38 @@ router.get('/:month', function(req, res, next) {
 				.then(function(response) {
 
 					var customizedData = response;
+					var firstDay = new Date(customizedData[1].fullDate).getDay();
+					if ( firstDay == 0 ) {
+						firstDay = 6;
+					} else {
+						firstDay = firstDay-1;
+					}
+
+					console.log(firstDay);
+
+					var previousMonth = {};
+
+					var a = 31;
+					
+					for ( var i = 0; i < firstDay; i++ ) {
+						
+						previousMonth[a] = {
+							fullDate: thisYear + "-" + monthNumber - 1 + "-" + a,
+							avalible: [],
+							indication: 0,
+							disabled: true
+						}
+
+						a--;
+
+					}
 
 					dataHandler.addColorCode(customizedData)
 					.then(function(response) {
 
 						var dataWithColor = response;
 
-						var templateData = { name: userName, url: userImg, months: months, days: dataWithColor, currentMonth: monthName };
+						var templateData = { name: userName, url: userImg, months: months, days: dataWithColor, currentMonth: monthName, previousMonth: previousMonth };
 						res.render('calendar', templateData);
 
 					}).catch(function(res) {console.log("Error: ", res)});

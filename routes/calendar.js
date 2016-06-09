@@ -52,13 +52,36 @@ router.get('/', function(req, res, next) {
 
 					// Render the response data
 					var customizedData = response;
+					var firstDay = new Date(customizedData[1].fullDate).getDay()-1;
+					if ( firstDay == 0 ) {
+						firstDay = 6;
+					} else {
+						firstDay = firstDay-1;
+					}
+
+					var previousMonth = {};
+
+					var a = 31;
+					
+					for ( var i = 0; i < firstDay; i++ ) {
+						
+						previousMonth[a] = {
+							fullDate: thisYear + "-" + thisMonth + "-" + a,
+							avalible: [],
+							indication: 0,
+							disabled: true
+						}
+
+						a--;
+
+					}
 
 					dataHandler.addColorCode(customizedData)
 					.then(function(response) {
 
 						var dataWithColor = response;
 
-						var templateData = { name: userName, url: userImg, months: months, days: dataWithColor, currentMonth: currentMonthName };
+						var templateData = { name: userName, url: userImg, months: months, days: dataWithColor, currentMonth: currentMonthName, previousMonth: previousMonth };
 						res.render('calendar', templateData);
 
 					}).catch(function(res) {console.log("Error: ", res)});
@@ -186,13 +209,36 @@ router.post('/', function(req, res, err) {
 					.then(function(response) {
 
 						var customizedData = response;
+						var firstDay = new Date(customizedData[1].fullDate).getDay()-1;
+						if ( firstDay == 0 ) {
+							firstDay = 6;
+						} else {
+							firstDay = firstDay-1;
+						}
+
+						var previousMonth = {};
+
+						var a = 31;
+						
+						for ( var i = 0; i < firstDay; i++ ) {
+							
+							previousMonth[a] = {
+								fullDate: yearToSet + "-" + monthToSet - 1 + "-" + a,
+								avalible: [],
+								indication: 0,
+								disabled: true
+							}
+
+							a--;
+
+						}
 
 						dataHandler.addColorCode(customizedData)
 						.then(function(response) {
 
 							var dataWithColor = response;
 
-							var templateData = { name: userName, url: userImg, months: months, days: dataWithColor, currentMonth: currentMonthName };
+							var templateData = { name: userName, url: userImg, months: months, days: dataWithColor, currentMonth: currentMonthName, previousMonth: previousMonth };
 							res.render('calendar', templateData);
 
 						}).catch(function(res) {console.log("Error: ", res)});

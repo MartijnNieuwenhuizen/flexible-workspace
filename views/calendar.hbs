@@ -22,6 +22,14 @@
 			</ul>
 
 			<ul class="calendar-container">
+				{{#each previousMonth}}
+					<li class="calendar-days--item disabled {{#if this.class}}{{class}}{{/if}}" disabled>
+						<input id="{{@key}}" type="checkbox" name="{{this.fullDate}}" {{#if this.present}} checked {{/if}} {{#if this.disabled}} disabled {{/if}}>
+						<label for="{{@key}}">{{@key}}</label>
+						<span class="amount" style="width:0%;">0%</span>
+						<span class="amount-total">0%</span>
+					</li>
+				{{/each}}
 				{{#each days}}
 					<li class="calendar-days--item {{#if this.class}}{{class}}{{/if}}">
 						<input id="{{@key}}" type="checkbox" name="{{this.fullDate}}" {{#if this.present}} checked {{/if}} {{#if this.class}} disabled {{/if}}>
