@@ -114,7 +114,7 @@ router.post('/', function(req, res, err) {
 			user = response;
 
 			// get the total amount of desks (for prototype purposes it's the amount of users * 1,5)
-			var amountOfUsers = Math.round(Object.keys(user[0]).length * 1.5);
+			var amountOfUsers = Math.round(Object.keys(user[0]).length);
 
 			for (var key in user[0]) {
 
