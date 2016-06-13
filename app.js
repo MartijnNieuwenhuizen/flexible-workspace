@@ -15,6 +15,7 @@ var desks = require('./routes/desks');
 var calendar = require('./routes/calendar');
 var admin = require('./routes/admin');
 var explanation = require('./routes/explanation');
+var feedback = require('./routes/feedback');
 
 var thisYear = require('./routes/thisYear');
 
@@ -56,6 +57,7 @@ app.use('/desks', desks);
 app.use('/calendar', calendar);
 app.use('/admin', admin);
 app.use('/2016', thisYear);
+app.use('/feedback', feedback);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {

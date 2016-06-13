@@ -1,0 +1,14 @@
+.feedback-form {
+	max-width: 37em;
+	box-sizing: border-box;
+	padding: 0 1em;
+
+	p {
+		margin-bottom: 1em;
+	}
+}
+.message {
+	text-align: center;
+	margin-top: 5em;
+	color: $light-blue;
+}
