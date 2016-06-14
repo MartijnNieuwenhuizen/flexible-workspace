@@ -11,4 +11,4 @@ build/Release
 node_modules
 npm-debug.log
 sketches
-routes/data
+routes/data/
