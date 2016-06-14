@@ -5,7 +5,8 @@ var template = require('./modules/template');
 var dataHandler = require('./modules/dataHandler');
 var object = require('./modules/object');
 
-var months = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];
+// var months = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];
+var months = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
 
 router.get('/:month', function(req, res, next) {
 
@@ -74,7 +75,14 @@ router.get('/:month', function(req, res, next) {
 
 						var dataWithColor = response;
 
-						var templateData = { name: userName, url: userImg, months: months, days: dataWithColor, currentMonth: monthName, previousMonth: previousMonth };
+						// only send the before and after month
+							var smallMonths = [];
+
+							smallMonths.push(months[monthNumber-2]);
+							smallMonths.push(months[monthNumber-1]);
+							smallMonths.push(months[monthNumber]);
+
+						var templateData = { name: userName, url: userImg, months: smallMonths, days: dataWithColor, currentMonth: monthName, previousMonth: previousMonth };
 						res.render('calendar', templateData);
 
 					}).catch(function(res) {console.log("Error: ", res)});

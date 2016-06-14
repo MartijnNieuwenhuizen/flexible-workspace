@@ -7,7 +7,8 @@ var dateHandler = require('./modules/dateHandler');
 var object = require('./modules/object');
 var calculation = require('./modules/calculation');
 
-var months = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];
+// var months = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];
+var months = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
 
 router.get('/', function(req, res, next) {
 
@@ -81,7 +82,14 @@ router.get('/', function(req, res, next) {
 
 						var dataWithColor = response;
 
-						var templateData = { name: userName, url: userImg, months: months, days: dataWithColor, currentMonth: currentMonthName, previousMonth: previousMonth };
+						// only send the before and after month
+						var smallMonths = [];
+
+						smallMonths.push(months[thisMonth-2]);
+						smallMonths.push(months[thisMonth-1]);
+						smallMonths.push(months[thisMonth]);
+
+						var templateData = { name: userName, url: userImg, months: smallMonths, days: dataWithColor, currentMonth: currentMonthName, previousMonth: previousMonth };
 						res.render('calendar', templateData);
 
 					}).catch(function(res) {console.log("Error: ", res)});
@@ -246,7 +254,14 @@ router.post('/', function(req, res, err) {
 
 							var dataWithColor = response;
 
-							var templateData = { name: userName, url: userImg, months: months, days: dataWithColor, currentMonth: currentMonthName, previousMonth: previousMonth };
+							// only send the before and after month
+							var smallMonths = [];
+
+							smallMonths.push(months[monthToSet-2]);
+							smallMonths.push(months[monthToSet-1]);
+							smallMonths.push(months[monthToSet]);
+
+							var templateData = { name: userName, url: userImg, months: smallMonths, days: dataWithColor, currentMonth: currentMonthName, previousMonth: previousMonth };
 							res.render('calendar', templateData);
 
 						}).catch(function(res) {console.log("Error: ", res)});
