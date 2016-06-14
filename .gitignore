@@ -11,4 +11,6 @@ build/Release
 node_modules
 npm-debug.log
 sketches
-routes/data/
+routes/data/dataTest.json
+routes/data/users.json
+routes/data/feedback.json
