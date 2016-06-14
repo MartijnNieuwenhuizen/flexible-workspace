@@ -51,10 +51,9 @@ app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
-app.use('/', explanation);
+app.use('/', calendar);
 app.use('/user', user);
 app.use('/desks', desks);
-app.use('/calendar', calendar);
 app.use('/admin', admin);
 app.use('/2016', thisYear);
 app.use('/feedback', feedback);

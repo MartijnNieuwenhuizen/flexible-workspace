@@ -1,39 +1,50 @@
-<section class="explanation">
+<main class="explanation-page">
 	<header>
-		<h1>{{title}}</h1>
+		<h1>Explenation</h1>
 	</header>
-
-	<section>
-		<figure>
-			<img src="/img/explanations/present.svg" alt="Work from home">
-			<figcaption>Work from home</figcaption>
-		</figure>
-
-		<figure>
-			<img src="/img/explanations/not-present.svg" alt="Work at the office">
-			<figcaption>Work at the office</figcaption>
-		</figure>
-
-		<figure>
-			<img src="/img/explanations/office-closed.svg" alt="Not a usual working day">
-			<figcaption>Not a usual working day</figcaption>
-		</figure>
-	</section>
-
-	<section>
-		<figure>
-			<img src="/img/explanations/rustig.svg" alt="Not much spaces are taken">
-			<figcaption>quiet day</figcaption>
-		</figure>
-
-		<figure>
-			<img src="/img/explanations/gemiddeld.svg" alt="Half of the spaces are taken">
-			<figcaption>average day</figcaption>
-		</figure>
-
-		<figure>
-			<img src="/img/explanations/druk.svg" alt="I'ts very busy on this day, you might want to work from home">
-			<figcaption>busy day</figcaption>
-		</figure>
-	</section>
-</section>
+	<div>
+		<div class="calendar-days--item">
+			<input type="checkbox" id="one" disabled>
+			<label for="one">21</label>
+			<span class="amount" style="width:60%; background-color:tomato">60%</span>
+			<span class="amount-total" style="background-color:tomato">60%</span>
+		</div>
+		<p>This indicates that you're working <strong>home</strong> this day</p>
+	</div>	
+	<div>
+		<div class="calendar-days--item">
+			<input type="checkbox" id="one" checked disabled>
+			<label for="one">21</label>
+			<span class="amount" style="width:60%; background-color:tomato">60%</span>
+			<span class="amount-total" style="background-color:tomato">60%</span>
+		</div>
+		<p>This indicates that you're working <strong>at the office</strong> this day</p>
+	</div>
+	<div>
+		<div class="calendar-days--item">
+			<input type="checkbox" id="one" checked disabled>
+			<label for="one">21</label>
+			<span class="amount" style="width:20%; background-color:#96C550">20%</span>
+			<span class="amount-total" style="background-color:#96C550">20%</span>
+		</div>
+		<div class="calendar-days--item">
+			<input type="checkbox" id="one" checked disabled>
+			<label for="one">21</label>
+			<span class="amount" style="width:50%; background-color:#00AD35">50%</span>
+			<span class="amount-total" style="background-color:#00AD35">50%</span>
+		</div>
+		<div class="calendar-days--item">
+			<input type="checkbox" id="one" checked disabled>
+			<label for="one">21</label>
+			<span class="amount" style="width:60%; background-color:#F25336">60%</span>
+			<span class="amount-total" style="background-color:#F25336">60%</span>
+		</div>
+		<div class="calendar-days--item">
+			<input type="checkbox" id="one" checked disabled>
+			<label for="one">21</label>
+			<span class="amount" style="width:80%; background-color:#C90702">80%</span>
+			<span class="amount-total" style="background-color:#C90702">80%</span>
+		</div>
+		<p>The <strong>business</strong> indicator</p>
+	</div>
+</main>
