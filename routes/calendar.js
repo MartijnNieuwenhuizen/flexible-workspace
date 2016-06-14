@@ -146,6 +146,7 @@ router.post('/', function(req, res, err) {
 
 				var days = response;
 				var daysPresent = [];
+				var recentlyAddedDays = [];
 
 				// create a array with all the dates the user is going to work
 				var rightMonthData = days[0][yearToSet][monthToSet];
@@ -172,6 +173,7 @@ router.post('/', function(req, res, err) {
 						if ( avaliblePersons.indexOf(userName) == -1 ) {
 
 			  				avaliblePersons.push(userName);
+			  				recentlyAddedDays.push(key);
 			  				
 			  				rightMonthData[key].indication = calculation.newIndication(avaliblePersons.length, amountOfUsers);
 
@@ -232,6 +234,12 @@ router.post('/', function(req, res, err) {
 							a--;
 
 						}
+						
+						recentlyAddedDays.forEach(function(day) {
+
+							customizedData[day].class = "recently-added";
+
+						});
 
 						dataHandler.addColorCode(customizedData)
 						.then(function(response) {
