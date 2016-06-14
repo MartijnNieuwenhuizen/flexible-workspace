@@ -52,8 +52,6 @@ router.get('/:month', function(req, res, next) {
 						firstDay = firstDay-1;
 					}
 
-					console.log(firstDay);
-
 					var previousMonth = {};
 
 					var a = 31;

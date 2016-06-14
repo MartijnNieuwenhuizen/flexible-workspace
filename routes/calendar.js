@@ -40,11 +40,11 @@ router.get('/', function(req, res, next) {
 
 				// Create the date of today
 				var today = new Date();
-				var thisMonth = today.getMonth();
-				var currentMonthName = months[thisMonth];
+				var thisMonth = today.getMonth() + 1;
+				var currentMonthName = months[thisMonth - 1];
 				var thisYear = today.getFullYear();
 				// Get the data from the current month
-				var rightMonthData = fullData[0][thisYear][thisMonth + 1];
+				var rightMonthData = fullData[0][thisYear][thisMonth];
 
 				// Ask for the users that are present on this month's day's
 				dataHandler.getPresentDays(rightMonthData, userName)
@@ -52,7 +52,7 @@ router.get('/', function(req, res, next) {
 
 					// Render the response data
 					var customizedData = response;
-					var firstDay = new Date(customizedData[1].fullDate).getDay()-1;
+					var firstDay = new Date(customizedData[1].fullDate).getDay();
 					if ( firstDay == 0 ) {
 						firstDay = 6;
 					} else {
@@ -203,15 +203,15 @@ router.post('/', function(req, res, err) {
 				.then(function(response) {
 					
 					// the new dataset
-					var days = response; 
+					var responseDays = response; 
 					 
-					var newMonthData = days[0][yearToSet][monthToSet];
+					var newMonthData = responseDays[0][yearToSet][monthToSet];
 
 					dataHandler.getPresentDays(newMonthData, userName)
 					.then(function(response) {
 
 						var customizedData = response;
-						var firstDay = new Date(customizedData[1].fullDate).getDay()-1;
+						var firstDay = new Date(customizedData[1].fullDate).getDay();
 						if ( firstDay == 0 ) {
 							firstDay = 6;
 						} else {

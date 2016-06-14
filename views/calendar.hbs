@@ -32,7 +32,7 @@
 				{{/each}}
 				{{#each days}}
 					<li class="calendar-days--item {{#if this.present}}{{class}}{{/if}}">
-						<input id="{{@key}}" type="checkbox" name="{{this.fullDate}}" {{#if this.present}} checked {{/if}} {{#if this.class}} disabled {{/if}}>
+						<input id="{{@key}}" type="checkbox" name="{{this.fullDate}}" {{#if this.present}} checked {{/if}}>
 						<label for="{{@key}}">{{@key}}</label>
 						<span class="amount" style="width:{{this.indication}}%; background-color:{{this.color}}">{{this.indication}}%</span>
 						<span class="amount-total" style="background-color:{{this.color}}">{{this.indication}}%</span>
