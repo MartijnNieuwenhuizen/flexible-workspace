@@ -1,0 +1,90 @@
+.explenation {
+	font-size: 200%;
+    position: fixed;
+    right: .5em;
+    bottom: .5em;
+    background-color: $light-blue;
+    border: none;
+    color: white;
+    border-radius: 50%;
+    width: 1.3em;
+    font-weight: bold;
+    text-align: center;
+    height: 1.3em;
+    line-height: 1.3;
+	
+	transition: box-shadow .2s;
+    box-shadow: 0 0em 0em $border;
+
+    &:hover {
+		box-shadow: 0 0.1em 0.3em $border;
+    }
+}
+
+.explanation-page {
+    max-width: 39em;
+    margin: 0 auto;
+
+    > div {
+        margin-bottom: 1em;
+    }
+    p {
+        display: inline-block;
+    }
+
+    strong {
+        color: #383838;
+    }
+
+    header {
+        margin-left: -1em;
+        padding: 2em 0px;
+    }
+
+    .calendar-days--item:nth-of-type(6) label {
+        background-color: $light-blue !important;
+    }    
+}
+
+.calendar-page {
+    .explanation-page {
+        position: fixed;
+        left: 50%;
+        top: 50%;
+        transform: translate(-50%, -50%);
+
+        &:after {
+            position: fixed;
+            top: 0;
+            left: 0;
+            background-color: lighten($light-blue, 40%);
+            content: " ";
+            width: 160vw;
+            height: 247vh;
+            transform: translate(-50%, -50%);
+            z-index: -1;
+        }
+    }   
+}
+.remove-explanation {
+    position: fixed;
+    top: 0;
+    right: 0;
+    transform: rotate(-45deg);
+    font-size: 400%;
+
+    &:hover {
+        font-weight: bold;       
+    }
+}
+
+#explenation {
+    z-index: -10;
+
+    transition: opacity .3s;
+    opacity: 0;
+}
+#explenation:target {
+    opacity: 1;
+    z-index: 1;
+}

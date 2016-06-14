@@ -29,7 +29,7 @@ router.post('/login', function(req, res, next) {
 			sess.userId = users[0][inputName].id;
 			
 			// rederect the user to the calendar
-			res.redirect('/calendar');
+			res.redirect('/');
 
 		} else {
 			
@@ -93,7 +93,7 @@ router.post('/sign-up', function(req, res, next) {
 			.then(function(response) {
 
 				var newUserData = response;
-				res.redirect('/calendar');
+				res.redirect('/');
 
 			}).catch(function(res) {console.log("Error: ", res)});
 
