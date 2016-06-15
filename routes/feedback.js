@@ -2,36 +2,22 @@ var express = require('express');
 var router = express.Router();
 
 var fileHandling = require('./modules/fileHandling');
+var sessionHandling = require('./modules/sessionHandling');
 
 router.get('/', function(req, res, next) {
 
 	if (req.session && req.session.userId) {
 
-		var userId = req.session.userId;
-		var titleData = req.body.title;
-		var pageData = req.body.page;
-		var feedbackData = req.body.feedback;
-
-		// Get the user
-		fileHandling.read('./routes/data/users.json')
+		sessionHandling.checkUser(req.session)
 		.then(function(response) {
-			var user = response;
 
-			for (var key in user[0]) {
-
-				if ( user[0][key].id == userId ) {
-
-					var userName = user[0][key].fullName;
-					var userImg = user[0][key].url;
-
-				}
-
-			}
+			var userName = response.fullName;
+			var userImg = response.url;
 
 			res.render('feedback', {name: userName, url: userImg});
 
 		}).catch(function(res) {console.log("Error: ", res)});
-	
+
 	} else {
 		res.redirect('/user/login');
 	}
@@ -42,31 +28,13 @@ router.get('/show', function(req, res, next) {
 
 	if (req.session && req.session.userId) {
 
-		var userId = req.session.userId;
-		var titleData = req.body.title;
-		var pageData = req.body.page;
-		var feedbackData = req.body.feedback;
-
-		// Get the user
-		fileHandling.read('./routes/data/users.json')
+		sessionHandling.checkUser(req.session)
 		.then(function(response) {
-			var user = response;
 
-			for (var key in user[0]) {
-
-				if ( user[0][key].id == userId ) {
-
-					var userName = user[0][key].fullName;
-					var userImg = user[0][key].url;
-
-				}
-
-			}
+			var userName = response.fullName;
+			var userImg = response.url;
 
 			if ( userName == "martijn" ) {
-
-				// get the feedback data
-				// render the feedbackdata
 
 				fileHandling.read('./routes/data/feedback.json')
 				.then(function(response) {
@@ -83,9 +51,8 @@ router.get('/show', function(req, res, next) {
 
 			}
 
-
 		}).catch(function(res) {console.log("Error: ", res)});
-	
+
 	} else {
 		res.redirect('/user/login');
 	}
@@ -96,26 +63,15 @@ router.post('/', function(req, res) {
 
 	if (req.session && req.session.userId) {
 
-		var userId = req.session.userId;
-		var titleData = req.body.title;
-		var pageData = req.body.page;
-		var feedbackData = req.body.feedback;
-
-		// Get the user
-		fileHandling.read('./routes/data/users.json')
+		sessionHandling.checkUser(req.session)
 		.then(function(response) {
-			var user = response;
 
-			for (var key in user[0]) {
+			var userName = response.fullName;
+			var userImg = response.url;
 
-				if ( user[0][key].id == userId ) {
-
-					var userName = user[0][key].fullName;
-					var userImg = user[0][key].url;
-
-				}
-
-			}
+			var titleData = req.body.title;
+			var pageData = req.body.page;
+			var feedbackData = req.body.feedback;
 
 			var now = new Date();
 			var timeStamp = now.getFullYear() + "/" + now.getMonth() + "/" + now.getDate() + "-" + now.getHours() + ":" + now.getMinutes() + ":" + now.getSeconds();
@@ -148,7 +104,7 @@ router.post('/', function(req, res) {
 		}).catch(function(res) {console.log("Error: ", res)});
 
 	} else {
-
+		res.redirect('/user/login');
 	}
 
 });

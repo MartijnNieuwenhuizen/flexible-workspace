@@ -99,7 +99,6 @@ router.post('/sign-up', function(req, res, next) {
 
 		}
 
-
 	}).catch(function(res) {console.log("Error: ", res)});
 
 
@@ -111,33 +110,19 @@ router.get('/:name', function(req, res, next) {
 
 	if (req.session && req.session.userId) {
 
-		var userId = req.session.userId;
-
-		// Get the user
-		fileHandling.read('./routes/data/users.json')
+		sessionHandling.checkUser(req.session)
 		.then(function(response) {
-			var user = response;
 
-			for (var key in user[0]) {
-
-				if ( user[0][key].id == userId ) {
-
-					var userName = user[0][key].fullName;
-					var userImg = user[0][key].url;
-					var userDesk = user[0][key].desk;
-
-				}
-
-			}
+			var userName = response.fullName;
+			var userImg = response.url;
+			var userDesk = response.desk;
 
 			res.render('user', {name: userName, url: userImg, desk: userDesk});
 
 		}).catch(function(res) {console.log("Error: ", res)});
 
 	} else {
-
 		res.redirect('/user/login');
-
 	}
 
 });
@@ -146,27 +131,15 @@ router.post('/change-desk', function(req, res, next) {
 
 	if (req.session && req.session.userId) {
 
-		var userId = req.session.userId;
-		var newDeskType = req.body.desk;
-
-		// Get the user
-		fileHandling.read('./routes/data/users.json')
+		sessionHandling.checkUser(req.session)
 		.then(function(response) {
-			var user = response;
 
-			for (var key in user[0]) {
+			var userName = response.fullName;
+			var userImg = response.url;
+			var userDesk = response.desk;
+			var user = response.allUsers;
 
-				if ( user[0][key].id == userId ) {
-
-					var userName = user[0][key].fullName;
-					var userImg = user[0][key].url;
-					var userDesk = user[0][key].desk;
-					var userKey = key;
-
-				}
-
-			}
-
+			var newDeskType = req.body.desk;
 			var message = "Desk type changed";
 
 			if ( newDeskType == userDesk ) {
@@ -177,15 +150,15 @@ router.post('/change-desk', function(req, res, next) {
 			} else {
 
 				// get right user
-				user[0][userKey].desk = newDeskType;
+				user[0][userName].desk = newDeskType;
 				fileHandling.write('./routes/data/users.json', user)
 				.then(function(response) {
 
 					var newUserData = response;
 					
-					userName = newUserData[0][userKey].fullName;
-					userImg = newUserData[0][userKey].url;
-					userDesk = newUserData[0][userKey].desk;
+					userName = newUserData[0][userName].fullName;
+					userImg = newUserData[0][userName].url;
+					userDesk = newUserData[0][userName].desk;
 
 					res.render('user', {name: userName, url: userImg, desk: userDesk, message: message});				
 
@@ -193,15 +166,10 @@ router.post('/change-desk', function(req, res, next) {
 
 			}
 
-
-			
-
 		}).catch(function(res) {console.log("Error: ", res)});
 
 	} else {
-
 		res.redirect('/user/login');
-
 	}
 
 });
