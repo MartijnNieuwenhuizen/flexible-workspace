@@ -1,0 +1,15 @@
+<main class="user-feedback">
+	
+	{{#each userFeedback}}
+		<article>
+			<h1>{{this.title}}</h1>
+			<ul>
+				<li><span>By: </span>{{this.user}}</li>
+				<li><span>On: </span>{{this.date}}</li>
+				<li><span>Page: </span>{{this.page}}</li>
+			</ul>
+			<p>{{this.feedback}}</p>
+		</article>
+	{{/each}}
+
+</main>

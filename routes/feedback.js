@@ -38,6 +38,60 @@ router.get('/', function(req, res, next) {
 
 });
 
+router.get('/show', function(req, res, next) {
+
+	if (req.session && req.session.userId) {
+
+		var userId = req.session.userId;
+		var titleData = req.body.title;
+		var pageData = req.body.page;
+		var feedbackData = req.body.feedback;
+
+		// Get the user
+		fileHandling.read('./routes/data/users.json')
+		.then(function(response) {
+			var user = response;
+
+			for (var key in user[0]) {
+
+				if ( user[0][key].id == userId ) {
+
+					var userName = user[0][key].fullName;
+					var userImg = user[0][key].url;
+
+				}
+
+			}
+
+			if ( userName == "martijn" ) {
+
+				// get the feedback data
+				// render the feedbackdata
+
+				fileHandling.read('./routes/data/feedback.json')
+				.then(function(response) {
+
+					var userFeedback = response;
+
+					res.render('showFeedback', {name: userName, url: userImg, userFeedback: userFeedback[0]});
+
+				}).catch(function(res) {console.log("Error: ", res)});
+
+			} else {
+
+				res.redirect('/user/login');
+
+			}
+
+
+		}).catch(function(res) {console.log("Error: ", res)});
+	
+	} else {
+		res.redirect('/user/login');
+	}
+
+});
+
 router.post('/', function(req, res) {
 
 	if (req.session && req.session.userId) {
