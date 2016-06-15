@@ -1,3 +1,4 @@
+routes/data/**
 logs
 *.log
 pids

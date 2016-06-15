@@ -26,16 +26,16 @@
 					<li class="calendar-days--item disabled {{#if this.class}}{{class}}{{/if}}" disabled>
 						<input id="" type="checkbox" name="{{this.fullDate}}" {{#if this.present}} checked {{/if}} {{#if this.disabled}} disabled {{/if}}>
 						<label for="">{{@key}}</label>
-						<span class="amount" style="width:0%;">0%</span>
 						<span class="amount-total">0%</span>
+						<span class="amount" style="width:0%;">0%</span>
 					</li>
 				{{/each}}
 				{{#each days}}
-					<li class="calendar-days--item {{#if this.class}}{{class}}{{/if}}">
-						<input id="{{@key}}" type="checkbox" name="{{this.fullDate}}" {{#if this.present}} checked {{/if}} {{#if this.class}} disabled {{/if}}>
+					<li class="calendar-days--item {{#if this.present}}{{class}}{{/if}}">
+						<input id="{{@key}}" type="checkbox" name="{{this.fullDate}}" {{#if this.present}} checked {{/if}}>
 						<label for="{{@key}}">{{@key}}</label>
-						<span class="amount" style="width:{{this.indication}}%; background-color:{{this.color}}">{{this.indication}}%</span>
 						<span class="amount-total" style="background-color:{{this.color}}">{{this.indication}}%</span>
+						<span class="amount" style="width:{{this.indication}}%; background-color:{{this.color}}">{{this.indication}}%</span>
 					</li>
 				{{/each}}
 			</ul>
@@ -44,18 +44,24 @@
 		</form>
 	</section>
 
-	<a href="#explenation" class="explenation">i</a>
+	<a href="#explenation" class="explenation-botton">i</a>
+	{{#if explenationMessage}}
+		<p class="explenation-message">Select the day's you'll be working from in the office.</p>
+	{{/if}}
 	
 	<section class="explanation-page" id="explenation">
 		<header>
 			<h1>Explenation</h1>
 		</header>
+
+		<p>Select the day's you'll be working from in the office.</p>
+
 		<div>
 			<div class="calendar-days--item">
 				<input type="checkbox" id="one" disabled>
 				<label for="one">21</label>
-				<span class="amount" style="width:60%; background-color:tomato">60%</span>
 				<span class="amount-total" style="background-color:tomato">60%</span>
+				<span class="amount" style="width:60%; background-color:tomato">60%</span>
 			</div>
 			<p>This indicates that you're working <strong>home</strong> this day</p>
 		</div>	
@@ -63,8 +69,8 @@
 			<div class="calendar-days--item">
 				<input type="checkbox" id="one" checked disabled>
 				<label for="one">21</label>
-				<span class="amount" style="width:60%; background-color:tomato">60%</span>
 				<span class="amount-total" style="background-color:tomato">60%</span>
+				<span class="amount" style="width:60%; background-color:tomato">60%</span>
 			</div>
 			<p>This indicates that you're working <strong>at the office</strong> this day</p>
 		</div>
@@ -72,26 +78,26 @@
 			<div class="calendar-days--item">
 				<input type="checkbox" id="one" checked disabled>
 				<label for="one">21</label>
-				<span class="amount" style="width:20%; background-color:#96C550">20%</span>
 				<span class="amount-total" style="background-color:#96C550">20%</span>
+				<span class="amount" style="width:20%; background-color:#96C550">20%</span>
 			</div>
 			<div class="calendar-days--item">
 				<input type="checkbox" id="one" checked disabled>
 				<label for="one">21</label>
-				<span class="amount" style="width:50%; background-color:#00AD35">50%</span>
 				<span class="amount-total" style="background-color:#00AD35">50%</span>
+				<span class="amount" style="width:50%; background-color:#00AD35">50%</span>
 			</div>
 			<div class="calendar-days--item">
 				<input type="checkbox" id="one" checked disabled>
 				<label for="one">21</label>
-				<span class="amount" style="width:60%; background-color:#F25336">60%</span>
 				<span class="amount-total" style="background-color:#F25336">60%</span>
+				<span class="amount" style="width:60%; background-color:#F25336">60%</span>
 			</div>
 			<div class="calendar-days--item">
 				<input type="checkbox" id="one" checked disabled>
 				<label for="one">21</label>
-				<span class="amount" style="width:80%; background-color:#C90702">80%</span>
 				<span class="amount-total" style="background-color:#C90702">80%</span>
+				<span class="amount" style="width:80%; background-color:#C90702">80%</span>
 			</div>
 			<p>The <strong>business</strong> indicator</p>
 		</div>

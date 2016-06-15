@@ -1,21 +1,51 @@
 .calendar-months {
 
+	width: 30.5em;
+    padding: 0 .5em;
+    margin-left: -1em;
+
+    border: 1px solid $border;
+    box-sizing: border-box;
+
+    @media(min-width: $calendar-bp-two) {
+    	width: 42.5em;
+    }
+
 	li {
 		display: inline-block;
+
+		&:nth-of-type(1) {
+			width: 10%;
+			a::before {
+				content: "<";
+				text-align: left;
+			}
+		}
+		&:nth-of-type(3) {
+			width: 10%;
+			a::after {
+				content: ">";
+				text-align: right;
+			}
+		}
+		&:nth-of-type(2) {
+			width: 79%;
+			a {
+				text-align: center;
+			}
+		}
 	}
 	a {
 		display: block;
-		width: 5em;
+		width: 100%;
 		padding: .3em 0;
 		box-sizing: border-box;
-		border: 1px solid $border;
 		border-radius: $radius;
 		text-align: center;
 	}
 
 	.active {
-		background-color: $light-blue;
-		border: 1px solid $light-blue;
-		color: $white;
+		color: $light-blue;
+		font-size: 150%;
 	}
 }
