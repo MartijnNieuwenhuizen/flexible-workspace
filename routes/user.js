@@ -29,7 +29,7 @@ router.post('/login', function(req, res, next) {
 			sess.userId = users[0][inputName].id;
 			
 			// rederect the user to the calendar
-			res.redirect('/');
+			res.redirect('/?first=true');
 
 		} else {
 			
@@ -93,7 +93,7 @@ router.post('/sign-up', function(req, res, next) {
 			.then(function(response) {
 
 				var newUserData = response;
-				res.redirect('/');
+				res.redirect('/?first=true');
 
 			}).catch(function(res) {console.log("Error: ", res)});
 
@@ -109,8 +109,115 @@ router.post('/sign-up', function(req, res, next) {
 
 router.get('/:name', function(req, res, next) {
 
-	var userName = req.params.name;
-	res.send("User: " + userName);
+	if (req.session && req.session.userId) {
+
+		var userId = req.session.userId;
+
+		// Get the user
+		fileHandling.read('./routes/data/users.json')
+		.then(function(response) {
+			var user = response;
+
+			for (var key in user[0]) {
+
+				if ( user[0][key].id == userId ) {
+
+					var userName = user[0][key].fullName;
+					var userImg = user[0][key].url;
+					var userDesk = user[0][key].desk;
+
+				}
+
+			}
+
+			res.render('user', {name: userName, url: userImg, desk: userDesk});
+
+		}).catch(function(res) {console.log("Error: ", res)});
+
+	} else {
+
+		res.redirect('/user/login');
+
+	}
+
+});
+
+router.post('/change-desk', function(req, res, next) {
+
+	if (req.session && req.session.userId) {
+
+		var userId = req.session.userId;
+		var newDeskType = req.body.desk;
+
+		// Get the user
+		fileHandling.read('./routes/data/users.json')
+		.then(function(response) {
+			var user = response;
+
+			for (var key in user[0]) {
+
+				if ( user[0][key].id == userId ) {
+
+					var userName = user[0][key].fullName;
+					var userImg = user[0][key].url;
+					var userDesk = user[0][key].desk;
+					var userKey = key;
+
+				}
+
+			}
+
+			var message = "Desk type changed";
+
+			if ( newDeskType == userDesk ) {
+
+				message = "You already selected the" + newDeskType + "desk";
+				res.render('user', {name: userName, url: userImg, desk: userDesk, message: message});
+
+			} else {
+
+				// get right user
+				user[0][userKey].desk = newDeskType;
+				fileHandling.write('./routes/data/users.json', user)
+				.then(function(response) {
+
+					var newUserData = response;
+					
+					userName = newUserData[0][userKey].fullName;
+					userImg = newUserData[0][userKey].url;
+					userDesk = newUserData[0][userKey].desk;
+
+					res.render('user', {name: userName, url: userImg, desk: userDesk, message: message});				
+
+				})
+
+			}
+
+
+			
+
+		}).catch(function(res) {console.log("Error: ", res)});
+
+	} else {
+
+		res.redirect('/user/login');
+
+	}
+
+});
+
+router.post('/logout', function(req, res, next) {
+
+	if (req.session && req.session.userId) {
+
+		req.session.destroy()
+		res.redirect('/user/login');
+
+	} else  {
+
+		res.redirect('/user/login');
+
+	}
 
 });
 
