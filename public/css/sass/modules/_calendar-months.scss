@@ -1,35 +1,59 @@
 .calendar-months {
 
-	width: 30.5em;
+	width: 19.3em;
     padding: 0 .5em;
-    margin-left: -1em;
-
-    border: 1px solid $border;
     box-sizing: border-box;
-
-    @media(min-width: $calendar-bp-two) {
-    	width: 42.5em;
-    }
+    text-align: center;
+	
+	/* Enhance alignment with flexbox */
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
 
 	li {
 		display: inline-block;
+		margin: 0 1em;
 
 		&:nth-of-type(1) {
-			width: 10%;
 			a::before {
 				content: "<";
-				text-align: left;
+				position: absolute;
+				font-size: 150%;
+				line-height: 1.2;
+				font-weight: bold;
+				color: $light-blue;
+
+				transition: .3s;
+				transform: translateX(-.8em);
+			}
+			
+			&:hover, &:focus {
+				a::before {
+					transform: translateX(-1.1em);
+				}				
 			}
 		}
 		&:nth-of-type(3) {
-			width: 10%;
 			a::after {
 				content: ">";
-				text-align: right;
+				position: absolute;
+				font-size: 150%;
+				line-height: 1.2;
+				font-weight: bold;
+				color: $light-blue;
+
+				transition: .3s;
+				transform: translateX(.2em);
+			}
+			
+			&:hover, &:focus {
+				a::after {
+					transform: translateX(.4em);
+				}				
 			}
 		}
 		&:nth-of-type(2) {
-			width: 79%;
 			a {
 				text-align: center;
 			}
@@ -42,6 +66,7 @@
 		box-sizing: border-box;
 		border-radius: $radius;
 		text-align: center;
+		text-transform: uppercase;
 	}
 
 	.active {

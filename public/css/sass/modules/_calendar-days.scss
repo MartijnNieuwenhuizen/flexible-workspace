@@ -20,13 +20,16 @@ form.calendar-days {
 	}
 
 	.days-title {
-		margin-bottom: 1em;
+		margin-bottom: 3em;
 		
 		li {
 			display: inline-block;
 			margin: 0 0.625em;
 			text-align: center;
 			width: 2.6em;
+			text-transform: uppercase;
+			color: $light-blue;
+
 			@media(min-width: $calendar-bp-one) {
 				width: 5em;
 			}
@@ -39,7 +42,7 @@ form.calendar-days {
 				&:nth-of-type(6),
 				&:nth-of-type(7) {
 					display: inline-block;
-					background-color: $border;
+					color: $border;
 				}
 			}
 		}
