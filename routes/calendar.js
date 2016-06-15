@@ -89,8 +89,14 @@ router.get('/', function(req, res, next) {
 						smallMonths.push(months[thisMonth-1]);
 						smallMonths.push(months[thisMonth]);
 
-						var templateData = { name: userName, url: userImg, months: smallMonths, days: dataWithColor, currentMonth: currentMonthName, previousMonth: previousMonth };
+						var message;
+						if ( req.query !== {} && req.query.first == "true" ) {
+							message = "Select the day's you'll be working from in the office.";
+						}
+
+						var templateData = { name: userName, url: userImg, months: smallMonths, days: dataWithColor, currentMonth: currentMonthName, previousMonth: previousMonth, message: message };
 						res.render('calendar', templateData);
+						
 
 					}).catch(function(res) {console.log("Error: ", res)});
 
