@@ -1,0 +1,18 @@
+<main class="user-detail">
+	<h1>Hello {{name}}</h1>
+
+	<form action="/user/change-desk" method="post" class="sign-up">
+		<p>Required desk</p>
+		<input type="radio" id="flexDesk" name="desk" value="flexDesk" {{#ifCond desk "flexDesk"}} checked {{/ifCond}}>
+		<label for="flexDesk">flex desk</label>
+		<input type="radio" id="fixedDesk" name="desk" value="fixedDesk" {{#ifCond desk "fixedDesk"}} checked {{/ifCond}}>
+		<label for="fixedDesk">fixed desk</label>
+
+
+		<input type="submit" value="Change Desk">
+	</form>
+
+	<form action="/user/logout" method="post" class="logout">
+		<input type="submit" value="Logout">
+	</form>
+</main>

@@ -1,21 +1,76 @@
 .calendar-months {
 
+	width: 19.3em;
+    padding: 0 .5em;
+    box-sizing: border-box;
+    text-align: center;
+	
+	/* Enhance alignment with flexbox */
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+
 	li {
 		display: inline-block;
+		margin: 0 1em;
+
+		&:nth-of-type(1) {
+			a::before {
+				content: "<";
+				position: absolute;
+				font-size: 150%;
+				line-height: 1.2;
+				font-weight: bold;
+				color: $light-blue;
+
+				transition: .3s;
+				transform: translateX(-.8em);
+			}
+			
+			&:hover, &:focus {
+				a::before {
+					transform: translateX(-1.1em);
+				}				
+			}
+		}
+		&:nth-of-type(3) {
+			a::after {
+				content: ">";
+				position: absolute;
+				font-size: 150%;
+				line-height: 1.2;
+				font-weight: bold;
+				color: $light-blue;
+
+				transition: .3s;
+				transform: translateX(.2em);
+			}
+			
+			&:hover, &:focus {
+				a::after {
+					transform: translateX(.4em);
+				}				
+			}
+		}
+		&:nth-of-type(2) {
+			a {
+				text-align: center;
+			}
+		}
 	}
 	a {
 		display: block;
-		width: 5em;
+		width: 100%;
 		padding: .3em 0;
 		box-sizing: border-box;
-		border: 1px solid $border;
 		border-radius: $radius;
 		text-align: center;
+		text-transform: uppercase;
 	}
 
 	.active {
-		background-color: $light-blue;
-		border: 1px solid $light-blue;
-		color: $white;
+		color: $light-blue;
+		font-size: 150%;
 	}
 }

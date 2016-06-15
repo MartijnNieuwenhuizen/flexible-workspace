@@ -7,7 +7,8 @@ var dateHandler = require('./modules/dateHandler');
 var object = require('./modules/object');
 var calculation = require('./modules/calculation');
 
-var months = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];
+// var months = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];
+var months = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
 
 router.get('/', function(req, res, next) {
 
@@ -40,11 +41,11 @@ router.get('/', function(req, res, next) {
 
 				// Create the date of today
 				var today = new Date();
-				var thisMonth = today.getMonth();
-				var currentMonthName = months[thisMonth];
+				var thisMonth = today.getMonth() + 1;
+				var currentMonthName = months[thisMonth - 1];
 				var thisYear = today.getFullYear();
 				// Get the data from the current month
-				var rightMonthData = fullData[0][thisYear][thisMonth + 1];
+				var rightMonthData = fullData[0][thisYear][thisMonth];
 
 				// Ask for the users that are present on this month's day's
 				dataHandler.getPresentDays(rightMonthData, userName)
@@ -52,7 +53,7 @@ router.get('/', function(req, res, next) {
 
 					// Render the response data
 					var customizedData = response;
-					var firstDay = new Date(customizedData[1].fullDate).getDay()-1;
+					var firstDay = new Date(customizedData[1].fullDate).getDay();
 					if ( firstDay == 0 ) {
 						firstDay = 6;
 					} else {
@@ -81,8 +82,21 @@ router.get('/', function(req, res, next) {
 
 						var dataWithColor = response;
 
-						var templateData = { name: userName, url: userImg, months: months, days: dataWithColor, currentMonth: currentMonthName, previousMonth: previousMonth };
+						// only send the before and after month
+						var smallMonths = [];
+
+						smallMonths.push(months[thisMonth-2]);
+						smallMonths.push(months[thisMonth-1]);
+						smallMonths.push(months[thisMonth]);
+
+						var message;
+						if ( req.query !== {} && req.query.first == "true" ) {
+							message = "Select the day's you'll be working from in the office.";
+						}
+
+						var templateData = { name: userName, url: userImg, months: smallMonths, days: dataWithColor, currentMonth: currentMonthName, previousMonth: previousMonth, message: message };
 						res.render('calendar', templateData);
+						
 
 					}).catch(function(res) {console.log("Error: ", res)});
 
@@ -146,6 +160,7 @@ router.post('/', function(req, res, err) {
 
 				var days = response;
 				var daysPresent = [];
+				var recentlyAddedDays = [];
 
 				// create a array with all the dates the user is going to work
 				var rightMonthData = days[0][yearToSet][monthToSet];
@@ -172,6 +187,7 @@ router.post('/', function(req, res, err) {
 						if ( avaliblePersons.indexOf(userName) == -1 ) {
 
 			  				avaliblePersons.push(userName);
+			  				recentlyAddedDays.push(key);
 			  				
 			  				rightMonthData[key].indication = calculation.newIndication(avaliblePersons.length, amountOfUsers);
 
@@ -201,15 +217,15 @@ router.post('/', function(req, res, err) {
 				.then(function(response) {
 					
 					// the new dataset
-					var days = response; 
+					var responseDays = response; 
 					 
-					var newMonthData = days[0][yearToSet][monthToSet];
+					var newMonthData = responseDays[0][yearToSet][monthToSet];
 
 					dataHandler.getPresentDays(newMonthData, userName)
 					.then(function(response) {
 
 						var customizedData = response;
-						var firstDay = new Date(customizedData[1].fullDate).getDay()-1;
+						var firstDay = new Date(customizedData[1].fullDate).getDay();
 						if ( firstDay == 0 ) {
 							firstDay = 6;
 						} else {
@@ -232,13 +248,26 @@ router.post('/', function(req, res, err) {
 							a--;
 
 						}
+						
+						recentlyAddedDays.forEach(function(day) {
+
+							customizedData[day].class = "recently-added";
+
+						});
 
 						dataHandler.addColorCode(customizedData)
 						.then(function(response) {
 
 							var dataWithColor = response;
 
-							var templateData = { name: userName, url: userImg, months: months, days: dataWithColor, currentMonth: currentMonthName, previousMonth: previousMonth };
+							// only send the before and after month
+							var smallMonths = [];
+
+							smallMonths.push(months[monthToSet-2]);
+							smallMonths.push(months[monthToSet-1]);
+							smallMonths.push(months[monthToSet]);
+
+							var templateData = { name: userName, url: userImg, months: smallMonths, days: dataWithColor, currentMonth: currentMonthName, previousMonth: previousMonth };
 							res.render('calendar', templateData);
 
 						}).catch(function(res) {console.log("Error: ", res)});
