@@ -72,15 +72,19 @@
 	}
 	.amount {
 		color: transparent;
-		margin-top: .1em;
+		/*margin-top: .1em;*/
+		transform: translateY(-100%);
 	}
 	
 	/* transparent max indocator */
 	.amount-total {
 		width: 100%;
 		color: transparent;
-		transform: translateY(-100%);
+		
 		opacity: .5;
+	}
+	span {
+		height: 1.5em;
 	}
 	
 	/* For the dissabled day's */

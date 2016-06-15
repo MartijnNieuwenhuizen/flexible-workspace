@@ -18,19 +18,21 @@
 			width: 10%;
 			a::before {
 				content: "<";
-				width: 1em;
-				display: inline-block;
+				text-align: left;
 			}
 		}
 		&:nth-of-type(3) {
 			width: 10%;
 			a::after {
 				content: ">";
-				width: 1em;
+				text-align: right;
 			}
 		}
 		&:nth-of-type(2) {
 			width: 79%;
+			a {
+				text-align: center;
+			}
 		}
 	}
 	a {
@@ -43,9 +45,6 @@
 	}
 
 	.active {
-		/*background-color: $light-blue;
-		border: 1px solid $light-blue;*/
-		/*color: $white;*/
 		color: $light-blue;
 		font-size: 150%;
 	}
