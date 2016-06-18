@@ -29,9 +29,14 @@ router.get('/', function(req, res, next) {
 
 				// Create the date of today
 				var today = new Date();
+				var thisDay = today.getDate();
 				var thisMonth = today.getMonth() + 1;
 				var currentMonthName = months[thisMonth - 1];
 				var thisYear = today.getFullYear();
+
+				// get the currentDay
+				var currentDay = thisYear + "-" + thisMonth + "-" + thisDay;
+
 				// Get the data from the current month
 				var rightMonthData = fullData[0][thisYear][thisMonth];
 
@@ -65,7 +70,7 @@ router.get('/', function(req, res, next) {
 								message = "Select the day's you'll be working in the office.";
 							}
 
-							var templateData = { name: userName, url: userImg, months: smallMonths, days: dataWithColor, currentMonth: currentMonthName, previousMonth: previousMonth, message: message };
+							var templateData = { name: userName, url: userImg, months: smallMonths, days: dataWithColor, currentMonth: currentMonthName, previousMonth: previousMonth, message: message, currentDay: currentDay };
 							res.render('calendar', templateData);
 
 						}).catch(function(res) {console.log("Error: ", res)});
