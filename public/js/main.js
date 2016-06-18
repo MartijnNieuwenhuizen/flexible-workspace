@@ -8,8 +8,12 @@
 
 	app.launcher = function() {
 
-		// calendar
-		// user
+		if ( ('querySelector' in document) && ('addEventListener' in document) ) {
+			
+			calendar.set();
+			// user
+			
+		}
 
 	}
 
