@@ -1,12 +1,15 @@
 (function() {
 	'use strict';
 
-	var calendar = require('./modules/calendar.js');
 	var app = {};
+
+	var calendar = require('./modules/calendar.js');
+	var user = require('./modules/user.js');
 
 	app.launcher = function() {
 
-		// calendar.setAllDates();
+		// calendar
+		// user
 
 	}
 
