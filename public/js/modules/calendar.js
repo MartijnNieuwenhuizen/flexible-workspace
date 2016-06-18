@@ -4,6 +4,7 @@ var calendar = {};
 
 calendar.set = function() {
 
+	calendar.removeSendButton();
 	calendar.getAllDates();
 
 }
@@ -50,7 +51,9 @@ calendar.setEvents = function() {
 
 calendar.removeSendButton = function() {
 	
-	// code
+	var submitButton = document.querySelector('.calendar-days input[type="submit"]');
+	console.log(submitButton);
+	submitButton.classList.add('js-hide');
 
 }
 
@@ -66,18 +69,23 @@ calendar.post = function(data) {
 
 	var xmlhttp = new XMLHttpRequest();
 
+	// React on the response of the request
 	xmlhttp.onreadystatechange = function() {
 	    if (xmlhttp.readyState == XMLHttpRequest.DONE) {
 	        
 	        var response = xmlhttp.responseText;
 	        var thisDate = Object.keys(JSON.parse(response));
-
-	        var elStatus = JSON.parse(response)[thisDate];
-	        	
-	        if ( elStatus == "true" ) {
-	        	var changeEl = document.querySelector('input[name="' + thisDate + '"]');
-				changeEl.parentElement.classList.add("recently-added");
-	        }
+	        
+	        // add the recently added condformation animation to the element
+        	var changeEl = document.querySelector('input[name="' + thisDate + '"]');
+        	// if the animation classlist is already added --> remove it
+        	if ( changeEl.parentElement.classList.contains("recently-added") == true ) {
+        		changeEl.parentElement.classList.remove("recently-added");
+        	}
+        	// give him time te remove the class from the element
+        	setTimeout(function() {
+        		changeEl.parentElement.classList.add("recently-added");
+        	},100 );
 
 	    }
 	}
