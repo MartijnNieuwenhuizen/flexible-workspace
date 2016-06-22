@@ -59,18 +59,23 @@
 			line-height: 1.2;
 		} 
 
-		&:hover {
+		&:hover, &:focus {
 			cursor: pointer;
 		}
 	}
 	input[type="checkbox"] {
-		display: none;
+		position: absolute;
+		z-index: -90;
+		top: -10em;
 	}
 	/* if the checkbox is checked */
 	input[type=checkbox]:checked + label {
 		padding: .2em 0;
 		margin-top: -.4em;
 		background-color: $light-blue;
+	}
+	input[type=checkbox]:focus + label {
+		transform: scale(1.1);
 	}
 	.amount {
 		color: transparent;
@@ -95,7 +100,7 @@
 			font-size: 120%;
 			line-height: 2.4;
 
-			&:hover {
+			&:hover, &:focus {
 				cursor: default;
 			}
 		}	

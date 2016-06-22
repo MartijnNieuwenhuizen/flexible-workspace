@@ -14,13 +14,13 @@ You can see the website live via [this URL](http://damco.whereilikemycoffee.com/
 This project contains a new branch for every feature. This creates a good summary of the entire project and keeps the code separate. *I’m writing an article about this, it will soon be posted on: [www.medium.com](https://medium.com/@martijnnieuwenhuizen)* 
 
 ## The Branches
-### calendarCalc
+### Branche: calendarCalc
 Contains all the calculations that need to be done on for the calendar
 
-### calendarPrototype
+### Branche: calendarPrototype
 This calendar contains handwritten data. This is later automized on the Develop branch (should have been the Admin branch). This automation means that the admin can add a whole new year to the calendar, which is calculated by JavaScript (see: *routes/modules/createNewCalendar*).
 
-### calenderResponsive
+### Branche: calenderResponsive
 Testing and fixing the responsiveness of the calendar is done on the branch. 
 
 *Note: * the weekends are hidden with only two lines of CSS, which are inspired by on the [Quantity Queries for CSS](http://alistapart.com/article/quantity-queries-for-css) article by [Heydon Pickering](http://www.heydonworks.com/).
@@ -35,19 +35,19 @@ Testing and fixing the responsiveness of the calendar is done on the branch.
 
 ```
 
-### conformation
+### Branche: conformation
 On every Submit, the user gets a confirmation for the day’s he changed. If you see this icon, the date you changed is confirmed by the server.
 
 — INTERGRADE ICON —
 
-### currentDay
+### Branche: currentDay
 The current day is highlighted with a hand drew circle that looks like this. 
 
 — INTERGRADE ICON —
 
 This is done by getting the current date on the server. If the current date matches a date in the current calendar month, it gets a class that contains this icon.
 
-### deskCalculation
+### Branche: deskCalculation
 The calculation to indicate the amount of desks free for a particular day is done on this branch. For prototyping purposes, the calculation is:
 
 ```
@@ -64,18 +64,18 @@ The real calculation sould be:
 
 The flex is needed because if people have a Fixed desk, they don’t need to be intergraded in this calculation
 
-### develop
+### Branche: develop
 The develop branch is the only branch that allows being merged with the master. This is also the branch that everything is tested on before it’s push to the master. I will highlight the purpose of this in the *soon coming* article on [www.medium.com](https://medium.com/@martijnnieuwenhuizen).
 
-### explanation
+### Branche: explanation
 After testing the first version of the app, not every action was immediately clear for the user. So besides a little redesign to make the app more intuitive for the user, there’s an explanation page integrated on the calendar page (marked: **i**).
 
-### feedbackButton
+### Branche: feedbackButton
 The client’s company is located in The Hague, so testing isn’t really easy. Therefore, I build a possibility for a user to send feedback thru the site. Just click on the right button:
 
 — Integrated Feedback Button IMG —
 
-### gulp
+### Branche: gulp
 There’s a gulp pipeline integrated into this project. The Gulp pipeline handles
 - Sass compression
 - Live Reload
@@ -86,15 +86,15 @@ This are the useful modules from the Gulpfile I use in the [Cobalt](https://gith
 
 I’ve tried to use tooling only for reasons where I really need it.
 
-### header
+### Branche: header
 Adding the header to the layout file, instead of including it in every single page.
 
-### login
+### Branche: login
 Styling and building the login/sign-up flow. The flow is build to be as easy as possible, so the user is asked to fill in his Damco-email. If the email exists in the DB, the user is signed in, else the user needs to sign-up by choosing a type of desk. 
 
 If you want to test it, you’re able to login with another username.
 
-### master
+### Branche: master
 This is the branch that’s on the live site. The **master** branch only contacts the **develop** branch and the develop branch is tested before going live. The roadmap for going live:
 
 1. Go to the live server 
@@ -110,16 +110,16 @@ This is the branch that’s on the live site. The **master** branch only contact
 - Pull the master branch
 - Restart Node.js
 
-### mongoDB
+### Branche: mongoDB
 Unfortunately not yet integrated, it’s on of the Todos. Currently, I use a JSON file on the server as a DB.
 
-### monthSelector
+### Branche: monthSelector
 Creating a working menu for selecting other months than the current months. Instead of using the *calendar.js* file for this, the server uses the *thisYear.js* file. The calculation is the same, but there’s a bit more of it (routes/thisYear.js).
 
-### redesign
+### Branche: redesign
 To improve the intuitive of the app, for the user, the app got a little redesign. This means the month selector at the top of the screen only shows the current months and the months before and after that. The alignment of the calendar is also optimized.
 
-### server
+### Branche: server
 The server setup at the begin of the project is done on this branch. Because a setup includes a lot of small parts, I've chosen to do this on the branch **server**. Done on this branch:
 - Install Node.js
 - Install Express.js
@@ -129,7 +129,7 @@ The server setup at the begin of the project is done on this branch. Because a s
 - Include the data files
 - Install the needed Node Modules
 
-### sessions
+### Branche: sessions
 Express has the ability to create sessions. A session exists as long as the server runs, if not indicated otherwise. 
 
 The sessions are used to keep the current user logged on. This quickens the flow. 
@@ -191,16 +191,16 @@ Now you at every request to the server, you can ask for the ``` req.session ``` 
 
 This is done in: /*routes/modules/sessionHandling.js*
 
-### showFeedback
+### Branche: showFeedback
 To be able to read the feedback without having to login into the server, I created a URL that only the admin can use to read the feedback.
 
-### spelling
+### Branche: spelling
 One of the feedback items on the list was spelling, I've changed the spelling/words
 
-### users
+### Branche: users
 This branch contains everything that has something to do with the users. This is not the login/signup but stuff on the user-page. The user is able to change the type of desk he needs and is able to Logout.
 
-### webApp
+### Branche: webApp
 On this branch, the WebApp is created. this means eventually the whole site can run without a single reload. All the data is sent by a POST request to the server, is handled on the server and send back to the client. This means I can still use my server side logic and won't have to write that twice.
 
 

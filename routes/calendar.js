@@ -29,9 +29,14 @@ router.get('/', function(req, res, next) {
 
 				// Create the date of today
 				var today = new Date();
+				var thisDay = today.getDate();
 				var thisMonth = today.getMonth() + 1;
 				var currentMonthName = months[thisMonth - 1];
 				var thisYear = today.getFullYear();
+
+				// get the currentDay
+				var currentDay = thisYear + "-" + thisMonth + "-" + thisDay;
+
 				// Get the data from the current month
 				var rightMonthData = fullData[0][thisYear][thisMonth];
 
@@ -65,7 +70,7 @@ router.get('/', function(req, res, next) {
 								message = "Select the day's you'll be working in the office.";
 							}
 
-							var templateData = { name: userName, url: userImg, months: smallMonths, days: dataWithColor, currentMonth: currentMonthName, previousMonth: previousMonth, message: message };
+							var templateData = { name: userName, url: userImg, months: smallMonths, days: dataWithColor, currentMonth: currentMonthName, previousMonth: previousMonth, message: message, currentDay: currentDay };
 							res.render('calendar', templateData);
 
 						}).catch(function(res) {console.log("Error: ", res)});
@@ -225,6 +230,79 @@ router.post('/', function(req, res, err) {
 
 	} else {
 		res.redirect('/user/login');
+	}
+  
+});
+
+router.post('/singleData', function(req, res, err) {
+
+	// check if there's a session
+	if (req.session && req.session.userId) {
+
+		// get the session data
+		sessionHandling.checkUser(req.session)
+		.then(function(response) {
+
+			// set date
+			var userName = response.fullName;
+			var userImg = response.url;
+			var amountOfUsers = response.amount
+			var postData = req.body;
+
+			// Make the month calculations
+			var thisDate = Object.keys(postData);
+			thisDate = thisDate[0];
+
+			var yearToSet = thisDate.slice(0, 4);
+			var sliceOne = thisDate.indexOf('-') + 1;
+			var sliceTwo = thisDate.indexOf('-', sliceOne);
+			var monthToSet = thisDate.slice(sliceOne, sliceTwo);
+			if ( monthToSet.charAt(0) == "0" ) {
+				monthToSet = monthToSet.slice(1, 2);
+			}
+			var dayToSet = thisDate.slice(sliceTwo + 1, thisDate.length);
+
+			// get the data
+		  	fileHandling.read('./routes/data/dataTest.json')
+			.then(function(response) {
+
+				var data = response;
+				var theRightDay = data[0][yearToSet][monthToSet][dayToSet];
+
+				// set or remove
+				var status = postData[thisDate];
+				if ( status === "true" ) {
+					
+					theRightDay.avalible.push(userName);
+
+				}	
+				if ( status === "false" ) {
+					console.log("FALSE");
+					
+					var indexNumber = theRightDay.avalible.indexOf(userName);
+			  		theRightDay.avalible.splice(indexNumber);
+			  		
+				}
+
+				data[0][yearToSet][monthToSet][dayToSet] = theRightDay;
+
+				fileHandling.write('./routes/data/dataTest.json', data)
+				.then(function(response) {
+
+					// Recalculate color!!!
+					res.send(postData);
+
+				}).catch(function(res) {console.log("Error: ", res)});
+
+			}).catch(function(res) {console.log("Error: ", res)});
+
+
+
+		}).catch(function(res) {console.log("Error: ", res)});
+
+	} else {
+		// res.redirect('/user/login');
+		console.log("boe:boe");
 	}
   
 });
