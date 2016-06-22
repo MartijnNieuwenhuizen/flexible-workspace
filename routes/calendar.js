@@ -302,7 +302,6 @@ router.post('/singleData', function(req, res, err) {
 
 	} else {
 		// res.redirect('/user/login');
-		console.log("boe:boe");
 	}
   
 });
