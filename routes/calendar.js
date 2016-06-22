@@ -266,6 +266,8 @@ router.post('/singleData', function(req, res, err) {
 		  	fileHandling.read('./routes/data/dataTest.json')
 			.then(function(response) {
 
+				console.log(response);
+
 				var data = response;
 				var theRightDay = data[0][yearToSet][monthToSet][dayToSet];
 

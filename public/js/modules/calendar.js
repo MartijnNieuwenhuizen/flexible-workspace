@@ -60,7 +60,7 @@ calendar.removeSendButton = function() {
 calendar.post = function(data) {
 	
 	var _data = data;
-	var url = location.href + "calendar/singleData";
+	var url = location.href + "singleData";
 
 	var date = _data.date;
 	var status = _data.status;
