@@ -92,4 +92,41 @@ dataHandler.addColorCode = function(data) {
 
 }
 
+dataHandler.addPreviousMonth = function(data, year, month) {
+
+	return new Promise(function(resolve, reject) {
+
+		var _data = data;
+		var _year = year;
+		var _month = month
+
+		var previousMonth = {};
+		var a = 31;
+		var firstDay = new Date(_data[1].fullDate).getDay();
+
+		if ( firstDay == 0 ) {
+			firstDay = 6;
+		} else {
+			firstDay = firstDay-1;
+		}
+		
+		for ( var i = 0; i < firstDay; i++ ) {
+			
+			previousMonth[a] = {
+				fullDate: _year + "-" + _month + "-" + a,
+				avalible: [],
+				indication: 0,
+				disabled: true
+			}
+
+			a--;
+
+		}
+
+		resolve(previousMonth);
+
+	});
+
+}
+
 module.exports = dataHandler;

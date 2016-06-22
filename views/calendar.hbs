@@ -31,7 +31,7 @@
 					</li>
 				{{/each}}
 				{{#each days}}
-					<li class="calendar-days--item {{#if this.present}}{{class}}{{/if}}">
+					<li class="calendar-days--item {{#if this.present}}{{class}}{{/if}} {{#ifCond this.fullDate ../currentDay}} today {{/ifCond}}">
 						<input id="{{@key}}" type="checkbox" name="{{this.fullDate}}" {{#if this.present}} checked {{/if}}>
 						<label for="{{@key}}">{{@key}}</label>
 						<span class="amount-total" style="background-color:{{this.color}}">{{this.indication}}%</span>
@@ -51,10 +51,10 @@
 	
 	<section class="explanation-page" id="explenation">
 		<header>
-			<h1>Explenation</h1>
+			<h1>Explanation</h1>
 		</header>
 
-		<p>Select the day's you'll be working from in the office.</p>
+		<p>Select the day's you'll be working in the office.</p>
 
 		<div>
 			<div class="calendar-days--item">
