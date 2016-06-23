@@ -4,8 +4,13 @@ var calendar = {};
 
 calendar.set = function() {
 
-	calendar.removeSendButton();
-	calendar.getAllDates();
+	// only run if you are on the calendar page
+	if ( document.querySelector('.calendar-page') ) {
+
+		calendar.removeSendButton();
+		calendar.getAllDates();
+
+	}
 
 }
 
@@ -52,7 +57,6 @@ calendar.setEvents = function() {
 calendar.removeSendButton = function() {
 	
 	var submitButton = document.querySelector('.calendar-days input[type="submit"]');
-	console.log(submitButton);
 	submitButton.classList.add('js-hide');
 
 }
@@ -60,7 +64,7 @@ calendar.removeSendButton = function() {
 calendar.post = function(data) {
 	
 	var _data = data;
-	var url = location.href + "singleData";
+	var url = location.origin + "/singleData"; // use origin to avoid the query from the server
 
 	var date = _data.date;
 	var status = _data.status;

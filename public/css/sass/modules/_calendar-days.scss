@@ -18,6 +18,14 @@ form.calendar-days {
 			max-width: 45em;
 		}
 	}
+	.calendar-container {
+		overflow: hidden;
+		padding: .8em 0;
+		
+		@media(min-width: $calendar-bp-one) {
+			padding: .5em 0;
+		}
+	}
 
 	.days-title {
 		margin-bottom: 3em;

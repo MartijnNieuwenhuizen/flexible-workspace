@@ -19,6 +19,11 @@
     &:hover {
 		box-shadow: 0 0.1em 0.3em $border;
     }
+
+    opacity: .5;
+    @media(min-width: 620px) {
+        opacity: 1;
+    }
 }
 
 .explanation-page {

@@ -81,7 +81,8 @@ gulp.task('sass', function() {
 gulp.task('browser-sync', function() {
    
     browserSync.init({
-    	proxy: 'localhost:3000'
+    	proxy: 'localhost:3000',
+		tunnel: "damco"
     });
 
 });
