@@ -4,8 +4,13 @@ var calendar = {};
 
 calendar.set = function() {
 
-	calendar.removeSendButton();
-	calendar.getAllDates();
+	// only run if you are on the calendar page
+	if ( document.querySelector('.calendar-page') ) {
+
+		calendar.removeSendButton();
+		calendar.getAllDates();
+
+	}
 
 }
 
@@ -52,7 +57,6 @@ calendar.setEvents = function() {
 calendar.removeSendButton = function() {
 	
 	var submitButton = document.querySelector('.calendar-days input[type="submit"]');
-	console.log(submitButton);
 	submitButton.classList.add('js-hide');
 
 }
