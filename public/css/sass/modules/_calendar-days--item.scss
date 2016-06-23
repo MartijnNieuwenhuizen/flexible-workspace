@@ -1,3 +1,15 @@
+@keyframes grow {
+	0% {
+		transform: scale(1);
+	}	
+	50% {
+		transform: scale(1.1);
+	}
+	100% {
+		transform: scale(1);
+	}
+}
+
 .calendar-days--item {
 	display: inline-block;
 	width: 3em;
@@ -75,7 +87,7 @@
 		background-color: $light-blue;
 	}
 	input[type=checkbox]:focus + label {
-		transform: scale(1.1);
+		animation: grow .5s ease-in;
 	}
 	.amount {
 		color: transparent;

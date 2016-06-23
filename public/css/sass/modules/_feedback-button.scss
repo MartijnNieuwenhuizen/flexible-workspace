@@ -17,4 +17,9 @@
 	&:hover {
 		box-shadow: 0 .1em .3em $border;
 	}
+
+	opacity: .7;
+    @media(min-width: 620px) {
+        opacity: 1;
+    }
 }
