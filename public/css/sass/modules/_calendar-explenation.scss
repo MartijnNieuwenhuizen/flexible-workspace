@@ -61,6 +61,15 @@
 		background-color: rgba($border, 1);
 		box-shadow: 0 0 0 50vmax rgba($border, 1);
 
+		h1 {
+			font-size: 2em;
+		}
+		@media(min-width: 600px) {
+			h1 {
+				@include xlarge;
+			}
+		}
+
         > p {
             color: $light-blue;
             margin-bottom: 1em;
@@ -70,14 +79,19 @@
 }
 .remove-explanation {
     position: fixed;
-    top: 0;
-    right: 0;
     transform: rotate(-45deg);
     font-size: 400%;
+	top: -.5em;
+	right: -.5em;
 
     &:hover {
         font-weight: bold;
     }
+
+	@media(min-width: 800px) {
+		top: 0;
+		right: 0;
+	}
 }
 
 #explenation {
