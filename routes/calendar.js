@@ -286,7 +286,7 @@ router.post('/singleData', function(req, res, err) {
 
 					var indexNumber = theRightDay.avalible.indexOf(userName);
 			  		theRightDay.avalible.splice(indexNumber);
-					// Recalculate color!!!
+					theRightDay.indication = calculation.newIndication(avaliblePersons.length, amountOfUsers);
 
 				}
 

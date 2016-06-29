@@ -79,14 +79,18 @@ calendar.post = function(data) {
 
 			var response = JSON.parse(xmlhttp.responseText);
 	        var thisDate = Object.keys(response.postData);
-			var newIndication = response.indication;
+			var newIndication = response.indication + "%";
 
 			// Grow or schrink the indication bar
 			var changeEl = document.querySelector('input[name="' + thisDate + '"]');
-			console.dir(changeEl);
+			var progressBar = changeEl.nextElementSibling.nextElementSibling.nextElementSibling;
 
 	        // add the recently added condformation animation to the element
-        	var changeEl = document.querySelector('input[name="' + thisDate + '"]');
+			console.log("newIndication: ", newIndication);
+			console.log(progressBar.style.width);
+			progressBar.style.width = newIndication;
+			console.log(progressBar.style.width);
+
         	// if the animation classlist is already added --> remove it
         	if ( changeEl.parentElement.classList.contains("recently-added") == true ) {
         		changeEl.parentElement.classList.remove("recently-added");
