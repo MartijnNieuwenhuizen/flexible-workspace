@@ -46,8 +46,11 @@
 			pointer-events: none;
 
     		label,
-    		input[type=checkbox]:checked + label {
-    			background-color: $border;
+    		input[type=checkbox]:checked + label,
+			.amount,
+			.amount-total {
+    			background-color: $border !important; // Needed because the color is added thrue JS.
+				opacity: 1;
     		}
     	}
     }
