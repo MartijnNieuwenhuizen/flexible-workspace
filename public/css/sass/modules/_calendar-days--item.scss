@@ -42,6 +42,9 @@
     	&:nth-of-type(7n+7) {
     		display: inline-flex;
 
+			// Disable the weekend button
+			pointer-events: none;
+
     		label,
     		input[type=checkbox]:checked + label {
     			background-color: $border;
