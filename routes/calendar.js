@@ -108,7 +108,7 @@ router.post('/', function(req, res, err) {
 		  	// Get the month and year that needs to be modified
 		  	var firstPostItem = object.getFirst(postData);
 		  	var yearToSet = firstPostItem.slice(0, 4);
-		  		
+
 		  	var sliceOne = firstPostItem.indexOf('-') + 1;
 		  	var sliceTwo = firstPostItem.indexOf('-', sliceOne);
 
@@ -152,14 +152,14 @@ router.post('/', function(req, res, err) {
 
 			  				avaliblePersons.push(userName);
 			  				recentlyAddedDays.push(key);
-			  				
+
 			  				rightMonthData[key].indication = calculation.newIndication(avaliblePersons.length, amountOfUsers);
 
 			  			}
 
 			  		// if the user isn't working on this day && is working in the data --> remover this person
 					} else {
-						
+
 						// loop thure the avalible persons, if userName is there, remove it
 						if ( avaliblePersons.indexOf(userName) > -1 ) {
 
@@ -179,17 +179,17 @@ router.post('/', function(req, res, err) {
 				// write the new dataset
 				fileHandling.write('./routes/data/dataTest.json', days)
 				.then(function(response) {
-					
+
 					// the new dataset
-					var responseDays = response; 
-					 
+					var responseDays = response;
+
 					var newMonthData = responseDays[0][yearToSet][monthToSet];
 
 					dataHandler.getPresentDays(newMonthData, userName)
 					.then(function(response) {
 
 						var customizedData = response;
-						
+
 						dataHandler.addPreviousMonth(customizedData, yearToSet, monthToSet)
 						.then(function(response) {
 
@@ -231,7 +231,7 @@ router.post('/', function(req, res, err) {
 	} else {
 		res.redirect('/user/login');
 	}
-  
+
 });
 
 router.post('/singleData', function(req, res, err) {
@@ -266,24 +266,28 @@ router.post('/singleData', function(req, res, err) {
 		  	fileHandling.read('./routes/data/dataTest.json')
 			.then(function(response) {
 
-				console.log(response);
-
 				var data = response;
 				var theRightDay = data[0][yearToSet][monthToSet][dayToSet];
 
 				// set or remove
 				var status = postData[thisDate];
-				if ( status === "true" ) {
-					
-					theRightDay.avalible.push(userName);
+				var avaliblePersons = theRightDay.avalible;
 
-				}	
+				if ( status === "true" ) {
+
+					theRightDay.avalible.push(userName);
+					theRightDay.indication = calculation.newIndication(avaliblePersons.length, amountOfUsers);
+					console.log(theRightDay.indication);
+					// Recalculate color!!!
+
+				}
 				if ( status === "false" ) {
 					console.log("FALSE");
-					
+
 					var indexNumber = theRightDay.avalible.indexOf(userName);
 			  		theRightDay.avalible.splice(indexNumber);
-			  		
+					theRightDay.indication = calculation.newIndication(avaliblePersons.length, amountOfUsers);
+
 				}
 
 				data[0][yearToSet][monthToSet][dayToSet] = theRightDay;
@@ -291,8 +295,7 @@ router.post('/singleData', function(req, res, err) {
 				fileHandling.write('./routes/data/dataTest.json', data)
 				.then(function(response) {
 
-					// Recalculate color!!!
-					res.send(postData);
+					res.send({postData: postData, indication: theRightDay.indication});
 
 				}).catch(function(res) {console.log("Error: ", res)});
 
@@ -305,7 +308,7 @@ router.post('/singleData', function(req, res, err) {
 	} else {
 		// res.redirect('/user/login');
 	}
-  
+
 });
 
 module.exports = router;

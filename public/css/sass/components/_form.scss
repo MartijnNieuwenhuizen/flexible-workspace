@@ -12,14 +12,13 @@ form {
 		color: $light-blue;
 	}
 	label,
-	input, 
+	input,
 	textarea,
 	select {
 		font-size: 1.2em;
 	}
 	input {
 		padding: .3em;	
-		width: 100%;
 		box-sizing: border-box;
 		border: 2px solid $border;
 		border-radius: $radius;

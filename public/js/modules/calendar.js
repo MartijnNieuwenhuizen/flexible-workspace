@@ -33,7 +33,7 @@ calendar.getData = function() {
 }
 
 calendar.setNewData = function() {
-	
+
 	var _this = this;
 
 	// Wait for the checkbox to be checked
@@ -49,20 +49,20 @@ calendar.setNewData = function() {
 }
 
 calendar.setEvents = function() {
-	
+
 	// code
 
 }
 
 calendar.removeSendButton = function() {
-	
+
 	var submitButton = document.querySelector('.calendar-days input[type="submit"]');
 	submitButton.classList.add('js-hide');
 
 }
 
 calendar.post = function(data) {
-	
+
 	var _data = data;
 	var url = location.origin + "/singleData"; // use origin to avoid the query from the server
 
@@ -76,12 +76,21 @@ calendar.post = function(data) {
 	// React on the response of the request
 	xmlhttp.onreadystatechange = function() {
 	    if (xmlhttp.readyState == XMLHttpRequest.DONE) {
-	        
-	        var response = xmlhttp.responseText;
-	        var thisDate = Object.keys(JSON.parse(response));
-	        
+
+			var response = JSON.parse(xmlhttp.responseText);
+	        var thisDate = Object.keys(response.postData);
+			var newIndication = response.indication + "%";
+
+			// Grow or schrink the indication bar
+			var changeEl = document.querySelector('input[name="' + thisDate + '"]');
+			var progressBar = changeEl.nextElementSibling.nextElementSibling.nextElementSibling;
+
 	        // add the recently added condformation animation to the element
-        	var changeEl = document.querySelector('input[name="' + thisDate + '"]');
+			console.log("newIndication: ", newIndication);
+			console.log(progressBar.style.width);
+			progressBar.style.width = newIndication;
+			console.log(progressBar.style.width);
+
         	// if the animation classlist is already added --> remove it
         	if ( changeEl.parentElement.classList.contains("recently-added") == true ) {
         		changeEl.parentElement.classList.remove("recently-added");

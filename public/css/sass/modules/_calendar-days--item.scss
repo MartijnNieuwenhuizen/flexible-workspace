@@ -1,7 +1,7 @@
 @keyframes grow {
 	0% {
 		transform: scale(1);
-	}	
+	}
 	50% {
 		transform: scale(1.1);
 	}
@@ -23,14 +23,14 @@
 	align-self: flex-end;
 
 	color: $white;
-	
+
     @media(min-width: $calendar-bp-one) {
     	width: 5em;
     	margin: .5em 0.625em;
     }
-	
-	/* 
-		Hide the weekends 	
+
+	/*
+		Hide the weekends
 		7n means every 7th element afther the selected element (+6 of +7)
 	*/
     &:nth-of-type(7n+6),
@@ -42,9 +42,15 @@
     	&:nth-of-type(7n+7) {
     		display: inline-flex;
 
+			// Disable the weekend button
+			pointer-events: none;
+
     		label,
-    		input[type=checkbox]:checked + label {
-    			background-color: $border;
+    		input[type=checkbox]:checked + label,
+			.amount,
+			.amount-total {
+    			background-color: $border !important; // Needed because the color is added thrue JS.
+				opacity: 1;
     		}
     	}
     }
@@ -58,7 +64,7 @@
 
 		font-size: 2em;
 		color: $white;
-		
+
 		transition: .15s;
 		height: 3rem;
 		line-height: 1.5;
@@ -67,9 +73,9 @@
 		/*box-shadow: inset 0px 0px 30px 0px rgba($white, .5);*/
 
 		@media(min-width: $calendar-bp-one) {
-			font-size: 2.5em;	
+			font-size: 2.5em;
 			line-height: 1.2;
-		} 
+		}
 
 		&:hover, &:focus {
 			cursor: pointer;
@@ -78,7 +84,7 @@
 	input[type="checkbox"] {
 		position: absolute;
 		z-index: -90;
-		top: -10em;
+		opacity: 0;
 	}
 	/* if the checkbox is checked */
 	input[type=checkbox]:checked + label {
@@ -93,18 +99,18 @@
 		color: transparent;
 		transform: translateY(-100%);
 	}
-	
+
 	/* transparent max indocator */
 	.amount-total {
 		width: 100%;
 		color: transparent;
-		
+
 		opacity: .5;
 	}
 	span {
 		height: 1.5em;
 	}
-	
+
 	/* For the dissabled day's */
 	&.disabled {
 		label {
@@ -115,7 +121,7 @@
 			&:hover, &:focus {
 				cursor: default;
 			}
-		}	
+		}
 		input {
 			&:hover {
 				cursor: default;

@@ -21,7 +21,7 @@ dataHandler.get = function(name, date) {
 	})
 	.catch(function(res) {console.log("Error: ", res)});
 
-}	
+}
 
 dataHandler.getPresentDays = function(data, userName) {
 
@@ -38,7 +38,7 @@ dataHandler.getPresentDays = function(data, userName) {
 			if ( avaliblePersons.indexOf(_userName) > -1 ) {
 
 				_data[key].present = true;
-				
+
 			}
 		}
 		resolve(_data);
@@ -101,7 +101,7 @@ dataHandler.addPreviousMonth = function(data, year, month) {
 		var _month = month
 
 		var previousMonth = {};
-		var a = 31;
+		var a = 80;
 		var firstDay = new Date(_data[1].fullDate).getDay();
 
 		if ( firstDay == 0 ) {
@@ -109,9 +109,9 @@ dataHandler.addPreviousMonth = function(data, year, month) {
 		} else {
 			firstDay = firstDay-1;
 		}
-		
+
 		for ( var i = 0; i < firstDay; i++ ) {
-			
+
 			previousMonth[a] = {
 				fullDate: _year + "-" + _month + "-" + a,
 				avalible: [],
