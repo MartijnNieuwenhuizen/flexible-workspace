@@ -28,9 +28,15 @@ body > header {
 		}
 	}
 	img {
-		width: 3.75em;
-		height: 3.75em;
+		width: 2.5em;
+		height: 2.5em;
+
 		border-radius: 50%;
 		overflow: hidden;
+
+		@media(min-width: $calendar-bp-one) {
+			width: 3em;
+			height: 3em;
+		}
 	}
 }
