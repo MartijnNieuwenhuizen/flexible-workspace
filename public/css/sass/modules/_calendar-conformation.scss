@@ -1,3 +1,22 @@
+@keyframes vinkSmall {
+	0% {
+		transform-origin: 100% 0%;
+		transform: translate(1.8em, -5.8em) scale(0);
+	}
+	20% {
+		transform-origin: 100% 0%;
+		transform: translate(1.8em, -5.8em) scale(.8);
+	}
+	80% {
+		transform-origin: 100% 0%;
+		transform: translate(1.8em, -5.8em) scale(.8);
+	}
+	100% {
+		transform-origin: 100% 0%;
+		transform: translate(1.8em, -5.8em) scale(0);
+	}
+}
+
 @keyframes vink {
 	0% {
 		transform-origin: 100% 0%;
@@ -29,8 +48,12 @@
 		background-position: center;
 		background-size: 79%;
 		background-repeat: no-repeat;
-		transform: translate(4.1em, -8em) scale(0);
+		transform: translate(1.8em, -5.8em) scale(0);
+		animation: vinkSmall 3s cubic-bezier(.32,1.4,.63,1.03);
 
-		animation: vink 3s cubic-bezier(.32,1.4,.63,1.03);
+		@media(min-width: $calendar-bp-one) {
+			transform: translate(4.1em, -8em) scale(0);
+			animation: vink 3s cubic-bezier(.32,1.4,.63,1.03);
+		}
 	}
 }
