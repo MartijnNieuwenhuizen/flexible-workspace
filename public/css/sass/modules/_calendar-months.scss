@@ -4,6 +4,8 @@
     padding: 0 .5em;
     box-sizing: border-box;
     text-align: center;
+	background-color: $white;
+	z-index: 1;
 
 	/* Enhance alignment with flexbox */
 	display: block;
