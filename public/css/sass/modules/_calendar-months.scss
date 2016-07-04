@@ -1,21 +1,21 @@
 .calendar-months {
 
-	width: 19.3em;
+	width: 20em;
     padding: 0 .5em;
     box-sizing: border-box;
     text-align: center;
 
 	/* Enhance alignment with flexbox */
+	display: block;
     display: flex;
     flex-direction: row;
     justify-content: space-between;
     align-items: center;
 
+
 	li {
 		display: inline-block;
 		margin: 0 1em;
-		min-width: 4em;
-		// background-color: green;
 
 		&:nth-of-type(1) {
 			a::before {
@@ -27,12 +27,12 @@
 				color: $light-blue;
 
 				transition: .3s;
-				transform: translateX(-.8em);
+				transform: translateX(-1em);
 			}
 
 			&:hover, &:focus {
 				a::before {
-					transform: translateX(-1.1em);
+					transform: translateX(-1.2em);
 				}
 			}
 		}
@@ -46,18 +46,16 @@
 				color: $light-blue;
 
 				transition: .3s;
-				transform: translateX(.2em);
+				transform: translateX(.4em);
 			}
 
 			&:hover, &:focus {
 				a::after {
-					transform: translateX(.4em);
+					transform: translateX(.6em);
 				}
 			}
 		}
 		&:nth-of-type(2) {
-			width: 8em;
-
 			a {
 				text-align: center;
 			}

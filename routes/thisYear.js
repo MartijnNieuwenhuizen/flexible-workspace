@@ -6,7 +6,8 @@ var dataHandler = require('./modules/dataHandler');
 var object = require('./modules/object');
 var sessionHandling = require('./modules/sessionHandling');
 
-var months = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
+// var months = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
+var months = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];
 
 router.get('/:month', function(req, res, next) {
 
@@ -33,7 +34,7 @@ router.get('/:month', function(req, res, next) {
 				.then(function(response) {
 
 					var customizedData = response;
-					
+
 					dataHandler.addPreviousMonth(customizedData, thisYear, monthNumber)
 					.then(function(response) {
 
@@ -55,7 +56,7 @@ router.get('/:month', function(req, res, next) {
 							res.render('calendar', templateData);
 
 						}).catch(function(res) {console.log("Error: ", res)});
-						
+
 					}).catch(function(res) {console.log("Error: ", res)});
 
 				}).catch(function(res) {console.log("Error: ", res)});
@@ -70,5 +71,5 @@ router.get('/:month', function(req, res, next) {
 
 });
 
-	
+
 module.exports = router;

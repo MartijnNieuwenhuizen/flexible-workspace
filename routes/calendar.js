@@ -8,7 +8,8 @@ var object = require('./modules/object');
 var calculation = require('./modules/calculation');
 var sessionHandling = require('./modules/sessionHandling');
 
-var months = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
+// var months = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
+var months = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];
 
 router.get('/', function(req, res, next) {
 
