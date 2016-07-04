@@ -5,7 +5,13 @@
     background-position: center;
     background-repeat: no-repeat;
     z-index: 1;
-    background-size: 4.4em;
-    width: 5em;
-    height: 3.5em;
+    background-size: 2.6em;
+    width: 3em;
+    height: 2.2em;
+
+    @media(min-width: $calendar-bp-one) {
+        background-size: 3.8em;
+        width: 5em;
+        height: 3.1em;
+    }
 }
