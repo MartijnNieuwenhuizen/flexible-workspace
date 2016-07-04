@@ -44,7 +44,7 @@ gulp.task('js', function() {
 });
 
 gulp.task('browserify', function() {
-    	
+
    	return gulp.src(config.js.src)
    		.pipe(plumber({
              errorHandler: config.error
@@ -79,10 +79,9 @@ gulp.task('sass', function() {
 
 // Static server
 gulp.task('browser-sync', function() {
-   
+
     browserSync.init({
-    	proxy: 'localhost:3000',
-		tunnel: "damco"
+    	proxy: 'localhost:3000'
     });
 
 });

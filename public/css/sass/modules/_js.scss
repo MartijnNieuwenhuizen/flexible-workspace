@@ -1,3 +1,29 @@
 .js-hide {
 	display: none;
 }
+.js-month-sticky {
+	position: fixed;
+	margin: 0 auto;
+	top: 1em;
+	left: 50%;
+	transform: translateX(-50%);
+	box-shadow: 0 -13.9vw 0 22vw $white;
+
+	@media(min-width: $calendar-bp-one) {
+		box-shadow: 0 -18.9vw 0 22vw $white;
+	}
+}
+.js-day-sticky {
+	position: fixed;
+	margin-top: 1em !important;
+	width: 100vw;
+	box-shadow: 0px 3px 0px $border !important;
+}
+
+.calendar-months, .days-title {
+	background-color: $white;
+	z-index: 999;
+}
+.js-containerPadding {
+	transform: translateY(10em);
+}
